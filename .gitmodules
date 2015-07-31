@@ -1,0 +1,12 @@
+[submodule "webapp"]
+	path = webapp
+	url = https://github.com/Madek/madek-webapp.git
+[submodule "api"]
+	path = api
+	url = https://github.com/Madek/madek-api.git
+[submodule "documentation"]
+	path = documentation
+	url = https://github.com/Madek/madek-documentation.git
+[submodule "madek-deploy"]
+	path = deploy
+	url = https://github.com/Madek/madek-deploy.git
