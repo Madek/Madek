@@ -1,41 +1,5 @@
 jobs:
-  'deploy_test8.madek.zhdk.ch/madek-v3':
-    name: Deploy to test8.madek.zhdk.ch/madek-v3
+  _cider-ci_include:
+    - path: cider-ci/jobs.yml
+      submodule: ['deploy']
 
-    depends-on:
-    - type: job
-      job: all_tests
-      submodule: ['webapp']
-      states: [passed]
-
-    run-on:
-    - type: branch
-      include-match: ^madek-v3$
-
-    context:
-      tasks:
-        deploy:
-
-          max-auto-trials: 1
-
-          environment-variables:
-            LANG: "en_US.UTF-8"
-
-          traits:
-            deploy-madek-test: true
-            linux: true
-            ansible: true
-
-          exclusive-global-resources:
-            "test8.madek.zhdk.ch/madek-v3": true
-
-          git-options:
-            submodules:
-              clone: true
-              timeout: 60
-
-          scripts:
-            deploy:
-              body: |
-                cd deploy && \
-                ansible-playbook -i hosts_zhdk_test8_madek-v3 play_setup-and-deploy.yml
