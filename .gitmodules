@@ -10,3 +10,6 @@
 [submodule "madek-deploy"]
 	path = deploy
 	url = https://github.com/Madek/madek-deploy.git
+[submodule "reverse-proxy"]
+	path = reverse-proxy
+	url = https://github.com/Madek/madek_reverse-proxy.git

@@ -1,1 +1,39 @@
-{}
+services:
+
+  api:
+
+    http:
+      host: localhost
+      port: 3102
+      context: NULL
+      sub_context: /api
+      ssl: false
+
+    nrepl:
+      port: 7802
+      bind: "127.0.0.1"
+      enabled: true
+
+  webapp:
+
+    http:
+      host: localhost
+      port: 3101
+      context: NULL
+      sub_context: NULL
+      ssl: false
+
+
+# configuration for the reverse proxy for dev and test, not used in production
+reverse_proxy:
+
+  http:
+    host: localhost
+    port: 3100
+    ssl: false
+
+  nrepl:
+    port: 7800
+    bind: "127.0.0.1"
+    enabled: true
+
