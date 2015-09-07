@@ -1,3 +1,6 @@
+madek_session_cookie_name: 'madek-session'
+madek_session_validity_duration: 7 days
+
 services:
 
   api:
