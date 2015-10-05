@@ -13,3 +13,6 @@
 [submodule "reverse-proxy"]
 	path = reverse-proxy
 	url = https://github.com/Madek/madek_reverse-proxy.git
+[submodule "integration-tests"]
+	path = integration-tests
+	url = https://github.com/Madek/madek_integration-tests.git
