@@ -1,3 +1,4 @@
-/tmp
 /config/settings.local.yml
+/reverse-proxy
 /storage
+/tmp
