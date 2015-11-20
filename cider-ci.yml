@@ -1,5 +1,6 @@
 jobs:
   _cider-ci_include:
+    - path: cider-ci/job_meta.yml
     - path: cider-ci/jobs.yml
       submodule: ['deploy']
     - path: cider-ci/job_integration-tests.yml
