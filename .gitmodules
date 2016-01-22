@@ -13,3 +13,6 @@
 [submodule "integration-tests"]
 	path = integration-tests
 	url = https://github.com/Madek/madek_integration-tests.git
+[submodule "admin-webapp"]
+	path = admin-webapp
+	url = https://github.com/Madek/madek_admin-webapp.git
