@@ -16,3 +16,9 @@
 [submodule "admin-webapp"]
 	path = admin-webapp
 	url = https://github.com/Madek/madek_admin-webapp.git
+[submodule "api-docs_source"]
+	path = api-docs_source
+	url = https://github.com/Madek/madek_api-docs_source.git
+[submodule "api-docs"]
+	path = api-docs
+	url = https://github.com/Madek/madek_api-docs.git
