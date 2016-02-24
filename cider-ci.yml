@@ -5,3 +5,5 @@ jobs:
       submodule: ['deploy']
     - path: cider-ci/job_integration-tests.yml
       submodule: ['integration-tests']
+    - path: cider-ci/job_specs-overview.yml
+      submodule: ['integration-tests']
