@@ -1,6 +1,7 @@
 /config/settings.local.yml
+exporter/
+/madek_v3
 /reverse-proxy
 /storage
 /tmp
-/madek_v3
 zhdk_integration/
