@@ -1,13 +1,15 @@
 releases:
 
+### NEXT ######################################################################
+
 - version_major: 3
   version_minor: 0
   version_patch: 0
-  version_pre: BETA
-  version_build: NULL
-  name: NULL
-  about-name: NULL
+  version_pre: 'alpha.0'
+  name: Tinguely
+  about-name: |
+    Schweizer Maler und Bildhauer
   description: |
+    First preview of the next version of Madek.
 
-    This is version 3 of Madek.
-
+### CURRENT  ##################################################################
