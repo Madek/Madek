@@ -1,0 +1,16 @@
+#!/bin/sh
+set -eu
+
+# usage: print summary for for last commit:
+# $ dev/git-submodule-changes-message <git-ref>
+
+echo ""; echo "" # linebreaks
+
+git submodule foreach --quiet '\
+  cd "$toplevel" \
+  && git diff HEAD^1...HEAD --submodule=log -- "$path" \
+     | sed -e "s/Submodule //" \
+     | grep -s "." \
+     && echo "" \
+  ; cd "$OLDPWD"\
+'
