@@ -1,9 +1,60 @@
 jobs:
-  _cider-ci_include:
-    - path: cider-ci/job_meta.yml
-    - path: cider-ci/jobs.yml
-      submodule: ['deploy']
-    - path: cider-ci/job_integration-tests.yml
-      submodule: ['integration-tests']
-    - path: cider-ci/job_specs-overview.yml
-      submodule: ['integration-tests']
+
+  all-tests:
+    name: "All tests"
+    description: |
+      This job depends on all unit jobs that need to pass.
+      It is depended upon by the super-project!
+    priority: 999 # "empty" job = high priority
+    context:
+      task: "echo '✔︎ All dependencies have passed' ; exit 0"
+    run_when: &DEFAULT_TRIGGERS
+      any branch matches:
+        type: branch
+        include_match: ^.+$
+    depends_on:
+      integration-tests: {job_key: integration-tests,   type: job, states: [passed]}
+      meta-checks: {job_key: meta-checks,   type: job, states: [passed]}
+      all-tests of the api: {job_key: all-tests, type: job, submodule: [api], states: [passed]}
+      all-tests of the admin-webapp: {job_key: all-tests, type: job, submodule: [admin-webapp], states: [passed]}
+      all-tests of the webapp: {job_key: all-tests, type: job, submodule: [webapp], states: [passed]}
+
+  good-to-merge:
+    name: "Good To Merge"
+    description: |
+      This job depends on all jobs that need to pass for "Delivery".
+      It is depended upon by GitHub's branch protection (for `master`)!
+    priority: 999 # "empty" job = high priority
+    context:
+      task: "echo '✔︎ All dependencies have passed' ; exit 0"
+    run_when: *DEFAULT_TRIGGERS
+    depends_on:
+      all-tests:  {job_key: all-tests,    type: job, states: [passed]}
+      good to merge of the api: {job_key: good-to-merge, type: job, submodule: [api], states: [passed]}
+      good to merge of the admin-webapp: {job_key: good-to-merge, type: job, submodule: [admin-webapp], states: [passed]}
+      good to merge of the webapp: {job_key: good-to-merge, type: job, submodule: [webapp], states: [passed]}
+
+
+  meta-checks:
+    name: Meta
+    description: |
+      Tasks that rely on external (out-of-repository) state.
+      Their state is not as fixed as in the other Jobs, so it might change over time.
+    priority: 3 # "I don't always run this, but when I do, it should be fast"
+    run_when: *DEFAULT_TRIGGERS
+    context:
+      include:
+        - path: cider-ci/contexts/meta-checks.yml
+          submodule: [webapp, datalayer]
+      task_defaults:
+        environment_variables:
+          GIT_LINEAR_HISTORY_CHECK_START_SHA: 2d24c889bd6a0ab06efe0bc0759893e622d05179
+
+  integration-tests:
+    name: Integration Tests
+    run_when: *DEFAULT_TRIGGERS
+    context:
+      include:
+        - path: cider-ci/integration-tests.yml
+          submodule: [integration-tests]
+
