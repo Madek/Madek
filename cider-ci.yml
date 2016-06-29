@@ -1,4 +1,9 @@
+
 jobs:
+
+  include:
+    - path: cider-ci/jobs.yml
+      submodule: [deploy]
 
   all-tests:
     name: "All tests"
@@ -57,4 +62,3 @@ jobs:
       include:
         - path: cider-ci/integration-tests.yml
           submodule: [integration-tests]
-
