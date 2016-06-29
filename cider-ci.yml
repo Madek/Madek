@@ -39,7 +39,6 @@ jobs:
       good to merge of the admin-webapp: {job_key: good-to-merge, type: job, submodule: [admin-webapp], states: [passed]}
       good to merge of the webapp: {job_key: good-to-merge, type: job, submodule: [webapp], states: [passed]}
 
-
   meta-checks:
     name: Meta
     description: |
@@ -54,6 +53,10 @@ jobs:
       task_defaults:
         environment_variables:
           GIT_LINEAR_HISTORY_CHECK_START_SHA: 2d24c889bd6a0ab06efe0bc0759893e622d05179
+      tasks:
+        datalayer integrity:
+          git_options: { submodules: { include_match: ^.*$ } }
+          scripts: { test: { body: cider-ci/bin/check-datalayer-integrity } }
 
   integration-tests:
     name: Integration Tests
