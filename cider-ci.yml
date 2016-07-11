@@ -24,6 +24,16 @@ jobs:
       all-tests of the admin-webapp: {job_key: all-tests, type: job, submodule: [admin-webapp], states: [passed]}
       all-tests of the webapp: {job_key: all-tests, type: job, submodule: [webapp], states: [passed]}
 
+  test-container-deploy:
+    name: Test Deploy to a Container
+    run_when: *DEFAULT_TRIGGERS
+    depends_on:
+      build: { type: job, job_key: build, states: [passed]}
+    context:
+      include:
+        - path: container-test/cider-ci/context.yml
+          submodule: [deploy]
+
   good-to-merge:
     name: "Good To Merge"
     description: |
