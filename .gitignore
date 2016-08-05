@@ -6,3 +6,4 @@
 config/git_refs.yml
 exporter/
 zhdk_integration/
+deploy-info.yml

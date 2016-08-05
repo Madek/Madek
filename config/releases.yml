@@ -5,11 +5,10 @@ releases:
 - version_major: 3
   version_minor: 0
   version_patch: 0
-  version_pre: 'alpha.0'
+  version_pre: 'rc.0'
   name: Tinguely
-  about-name: |
-    Schweizer Maler und Bildhauer
+  info_url: https://de.wikipedia.org/wiki/Jean_Tinguely
   description: |
-    First preview of the next version of Madek.
+    First release candidate of the next version of Madek.
 
 ### CURRENT  ##################################################################
