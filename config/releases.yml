@@ -1,6 +1,25 @@
 releases:
 
-### NEXT ######################################################################
+### CURRENT #######################################################################
+
+- version_major: 3
+  version_minor: 0
+  version_patch: 0
+  version_pre: 'rc.1'
+  name: Tinguely
+  info_url: https://de.wikipedia.org/wiki/Jean_Tinguely
+  description: |
+    Second release candidate of the next version of Madek.
+
+    Changes:
+      * fix: rewrite HTTP-redirect to HTTPs when using HTTPs
+      * fix: MediaPlayer post image
+      * fix: validation of new meta data for required context keys
+      * feat: use configured site_title as html title
+      * feat: set a default license/usage on upload
+      * feat: use configured site_title as html title
+
+### HISTORY  ######################################################################
 
 - version_major: 3
   version_minor: 0
@@ -10,5 +29,3 @@ releases:
   info_url: https://de.wikipedia.org/wiki/Jean_Tinguely
   description: |
     First release candidate of the next version of Madek.
-
-### CURRENT  ##################################################################
