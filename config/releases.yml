@@ -12,6 +12,7 @@ releases:
     Second release candidate of the next version of Madek.
 
     Changes:
+      * fix: proper counts on explore catalog 2nd level page
       * fix: rewrite HTTP-redirect to HTTPs when using HTTPs
       * fix: MediaPlayer post image
       * fix: validation of new meta data for required context keys
