@@ -65,6 +65,7 @@ jobs:
           GIT_LINEAR_HISTORY_CHECK_START_SHA: 2d24c889bd6a0ab06efe0bc0759893e622d05179
       tasks:
         datalayer integrity:
+          traits: {"nodejs 4": yes}
           git_options: { submodules: { include_match: ^.*$ } }
           scripts: { test: { body: cider-ci/bin/check-datalayer-integrity } }
 
