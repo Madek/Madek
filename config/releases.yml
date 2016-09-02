@@ -12,6 +12,7 @@ releases:
     Second release candidate of the next version of Madek.
 
     Changes:
+      * fix: API doc links in the API browser
       * fix: API meta_key id regex check and docs
       * fix: proper counts on explore catalog 2nd level page
       * fix: rewrite HTTP-redirect to HTTPs when using HTTPs
