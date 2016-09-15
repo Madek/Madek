@@ -20,6 +20,7 @@ jobs:
     depends_on:
       integration-tests: {job_key: integration-tests,   type: job, states: [passed]}
       meta-checks: {job_key: meta-checks,   type: job, states: [passed]}
+      test container deploy: {job_key: test-container-deploy,  type: job, states: [passed]}
       all-tests of the api: {job_key: all-tests, type: job, submodule: [api], states: [passed]}
       all-tests of the admin-webapp: {job_key: all-tests, type: job, submodule: [admin-webapp], states: [passed]}
       all-tests of the webapp: {job_key: all-tests, type: job, submodule: [webapp], states: [passed]}
