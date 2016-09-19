@@ -5,14 +5,41 @@ releases:
 - version_major: 3
   version_minor: 0
   version_patch: 0
-  version_pre: 'rc.2'
+  version_pre: '3.0'
   name: Tinguely
   info_url: https://de.wikipedia.org/wiki/Jean_Tinguely
   description: |
-    Second release candidate of the next version of Madek.
+
+    Third pre-release for Tinguely.
 
     Changes:
-      * fix: Migrate title etc. consistently to precomposed unicode
+    ========
+
+    General and DB:
+    ---------------
+      - Apply Unicode Normalisation to MetaDatumTexts and Keywords.
+
+    webapp a7dc84e..2c13515:
+    -------------------------
+      - feat: "list" view (with MetaData) for Sets
+      - feat: "tile" view for all Listings (Entries and Sets)
+      - feat: show PDFs in browser (if supported)
+      - feat: save layout for sets, show saved layout by default
+      - feat: log into edit_sessions
+      - fix: don't try to show "Set Highlights" that are hidden for user
+      - fix: explore: count for 2nd level & specs
+      - fix: routes: add legacy redirects
+      - fix: better ranking of autocomplete search results
+      - visual fixes
+
+    admin-webapp:
+    ------------­
+      - list also not published Media Entries, add corresponding filter
+
+    api:
+    ---
+      - fix: missing docs for collections & filter_sets
+      - fix: meta_key id regex & update docs
 
 ### HISTORY  ######################################################################
 
