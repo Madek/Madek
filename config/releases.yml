@@ -5,6 +5,37 @@ releases:
 - version_major: 3
   version_minor: 0
   version_patch: 0
+  version_pre: '5.0'
+  name: Oppenheim
+  info_url: 'http://www.sikart.ch/KuenstlerInnen.aspx?id=4000327&lng=de'
+  description: |
+
+    First pre-release for "Oppenheim".
+
+    Changes:
+    ========
+
+    webapp
+    ------
+      - feat: CollectionRelations: show all
+      - feat: CollectionShow: children type switcher
+      - feat: display progress of processed files with Zencoder
+      - feat: views: Vocabulary info pages
+      - feat: sort set by last change
+      - fix: MetaDataEdit: don't submit form on enter
+      - fix: Explore: larger teaser images
+      - fix: PermissionsEdit: fullwidth inputs
+      - fix: close set dialog before forward
+
+    admin-webapp
+    ------------
+      - feat: display progress of processed files with Zencoder
+
+### HISTORY  ######################################################################
+
+- version_major: 3
+  version_minor: 0
+  version_patch: 0
   version_pre: '4.0'
   name: Tinguely
   info_url: https://de.wikipedia.org/wiki/Jean_Tinguely
@@ -40,8 +71,6 @@ releases:
     ------------
     - feat: reencode video with Zencoder
     - fix: after switching to another user redirect to his archive
-
-### HISTORY  ######################################################################
 
 - version_major: 3
   version_minor: 0
