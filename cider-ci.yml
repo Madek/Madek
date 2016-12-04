@@ -63,7 +63,7 @@ jobs:
           submodule: [webapp, datalayer]
       task_defaults:
         environment_variables:
-          GIT_LINEAR_HISTORY_CHECK_START_SHA: 2d24c889bd6a0ab06efe0bc0759893e622d05179
+          GIT_LINEAR_HISTORY_CHECK_START_SHA: 23545efe832c1cc97194392ad3dad11e3cc46aa0
       tasks:
         datalayer integrity:
           traits: {"nodejs 4": yes}
