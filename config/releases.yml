@@ -5,6 +5,37 @@ releases:
 - version_major: 3
   version_minor: 0
   version_patch: 0
+  version_pre: '7.4'
+  name: Petitpierre
+  info_url: 'http://www.sikart.ch/KuenstlerInnen.aspx?id=4026301'
+  description: |
+
+    Admin: New audio/video batch re-encoding process.
+    Webapp: Better file downloads and PDF viewing fixes;
+    customizable HTML (e.g. custom styles or analytics).
+
+    ## Changes
+
+    ### webapp
+      - feat: view: layout: add extra content from settings
+      - fix: overwrite content type application/x-pdf with application/pdf
+      - fix: use filename with extension for original and preview file downloads
+
+    ### admin
+      - media_files: client/server batch encoding process
+      - fix: app-settings: hide secrets from deploy-config (Madek/madek_admin-webapp#1)
+
+    ### deploy
+      - @zhdk: add HD video previews
+      - @zhdk: add piwik tracking code
+      - add settings for webapp extra html content
+
+
+### HISTORY  ######################################################################
+
+- version_major: 3
+  version_minor: 0
+  version_patch: 0
   version_pre: '7.3'
   name: Petitpierre
   info_url: 'http://www.sikart.ch/KuenstlerInnen.aspx?id=4026301'
@@ -21,9 +52,6 @@ releases:
     ### deploy
       - zencoder: set audio codec to mp3
       - @zhdk: update AGW and zencoder config
-
-
-### HISTORY  ######################################################################
 
 - version_major: 3
   version_minor: 0
