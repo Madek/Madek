@@ -5,6 +5,37 @@ releases:
 - version_major: 3
   version_minor: 0
   version_patch: 0
+  version_pre: '7.5'
+  name: Petitpierre
+  info_url: 'http://www.sikart.ch/KuenstlerInnen.aspx?id=4026301'
+  description: |
+
+    webapp: better Vocabulary Pages and lots of small fixes
+
+    ## changes
+
+    ### webapp
+      - [x] feat: add vocabulary links to „more data“ view
+      - [x] feat: add hint texts to relations page
+      - [x] feat: release info: deploy and dev info, all releases
+      - [x] feat: vocabulary contents
+      - [x] feat: release info page
+      - [x] feat: meta data edit thumbnail links to media preview
+      - [x] fix: autocomplete dropdown width
+      - [x] fix: InputTextDate: fix missing inputs
+      - [x] fix: style: consistent font rendering (webkit)
+      - [x] fix: routes: fix terms with special characters
+      - [x] fix: use larger previews for thumbnail link on meta data edit
+      - [x] fix: hint texts for vocabulary keywords and contents
+      - [x] fix: relations texts and layouting
+      - [x] fix: vocab link color; fix: relations texts and layout
+
+
+### HISTORY  ######################################################################
+
+- version_major: 3
+  version_minor: 0
+  version_patch: 0
   version_pre: '7.4'
   name: Petitpierre
   info_url: 'http://www.sikart.ch/KuenstlerInnen.aspx?id=4026301'
@@ -29,9 +60,6 @@ releases:
       - @zhdk: add HD video previews
       - @zhdk: add piwik tracking code
       - add settings for webapp extra html content
-
-
-### HISTORY  ######################################################################
 
 - version_major: 3
   version_minor: 0
