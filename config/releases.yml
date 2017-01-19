@@ -15,20 +15,20 @@ releases:
     ## changes
 
     ### webapp
-      - [x] feat: add vocabulary links to „more data“ view
-      - [x] feat: add hint texts to relations page
-      - [x] feat: release info: deploy and dev info, all releases
-      - [x] feat: vocabulary contents
-      - [x] feat: release info page
-      - [x] feat: meta data edit thumbnail links to media preview
-      - [x] fix: autocomplete dropdown width
-      - [x] fix: InputTextDate: fix missing inputs
-      - [x] fix: style: consistent font rendering (webkit)
-      - [x] fix: routes: fix terms with special characters
-      - [x] fix: use larger previews for thumbnail link on meta data edit
-      - [x] fix: hint texts for vocabulary keywords and contents
-      - [x] fix: relations texts and layouting
-      - [x] fix: vocab link color; fix: relations texts and layout
+      - feat: add vocabulary links to „more data“ view
+      - feat: add hint texts to relations page
+      - feat: release info: deploy and dev info, all releases
+      - feat: vocabulary contents
+      - feat: release info page
+      - feat: meta data edit thumbnail links to media preview
+      - fix: autocomplete dropdown width
+      - fix: InputTextDate: fix missing inputs
+      - fix: style: consistent font rendering (webkit)
+      - fix: routes: fix terms with special characters
+      - fix: use larger previews for thumbnail link on meta data edit
+      - fix: hint texts for vocabulary keywords and contents
+      - fix: relations texts and layouting
+      - fix: vocab link color; fix: relations texts and layout
 
 
 ### HISTORY  ######################################################################
