@@ -1,0 +1,4 @@
+#!/bin/sh
+set -eu
+
+git commit --amend -m "$(git log -n1 --format="%s")$(./dev/git-submodule-changes-message)"
