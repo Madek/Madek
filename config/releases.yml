@@ -5,6 +5,69 @@ releases:
 - version_major: 3
   version_minor: 0
   version_patch: 0
+  version_pre: '8.0'
+  name: Glauser
+  info_url: 'https://de.wikipedia.org/wiki/Friedrich_Glauser'
+  description: |
+
+    **webapp**
+
+      - several fixes, some security related
+      - add custom urls management
+      - improved MetaData editing
+      - better Vocabulary-related UI
+
+    **admin-webapp**
+
+      - provide UI to cleanup keywords
+      - create/duplicate Context from Context/Vocab
+
+    **general**
+
+      - core vocabulary fixes and improvements
+      - improved deploy, especially for first-time setup
+
+    ## changes
+
+    ### admin-webapp
+    - feat: provide keywords management
+    - feat: create/duplicate Context from Context/Vocab
+    - fix: hide "re-encode missing" features
+
+    ### deploy
+    - deploy-info: "deploy time", "is_latest_release"
+    - build: add changes since last release
+    - fix: apache: add ServerName
+    - fix: build: deploy_info: time -> build_time
+    - fix: monit: restart instead of reload
+    - test: container: run first-time-setup playbook
+    - add playbook 'first-time-setup'
+
+    ### webapp
+    - fix(security): policy: enforce correct permissions for update permissions
+    - fix(security): export: don't serve HTML uploads as HTML
+    - feat: add confirmation dialog to custom urls transfer and adjust flash messages
+    - feat: custom urls management
+    - feat: embed edit meda data by vocabulary inside a tab
+    - feat: explore menu entry to vocabularies
+    - feat: vocabulary quick links in meta data edit by vocabulary
+    - feat: view: release: more deploy info
+    - fix: ActivityStream: section name, more formal language
+    - fix: disable save button logic
+    - fix: meta data edit tests
+    - fix: only show extra contexts which have meta data content
+    - fix: only show links for vocabulary titles, not for context titles
+    - fix: remove filter set saving from dropdown
+    - fix: routes: keyword terms, fixes
+    - fix: style: MediaPlayer: remove ghostlines
+    - fix: vocabulary title links should look the same everywhere
+
+
+### HISTORY  ######################################################################
+
+- version_major: 3
+  version_minor: 0
+  version_patch: 0
   version_pre: '7.5'
   name: Petitpierre
   info_url: 'http://www.sikart.ch/KuenstlerInnen.aspx?id=4026301'
@@ -29,9 +92,6 @@ releases:
       - fix: hint texts for vocabulary keywords and contents
       - fix: relations texts and layouting
       - fix: vocab link color; fix: relations texts and layout
-
-
-### HISTORY  ######################################################################
 
 - version_major: 3
   version_minor: 0
