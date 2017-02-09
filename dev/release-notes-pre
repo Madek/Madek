@@ -3,12 +3,9 @@ set -eu
 
 git fetch --quiet
 
-echo "Changes between origin/release and origin/master"
-echo ""
-
 git submodule foreach --quiet '\
   cd "$toplevel" \
-  && git diff origin/release...origin/master --submodule=log -- "$path" \
+  && git diff origin/release...HEAD --submodule=log -- "$path" \
      | sed -e "s/Submodule //" \
      | grep -s "." \
      && echo "" \
