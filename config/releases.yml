@@ -410,7 +410,8 @@ releases:
   description: |
     Second release candidate of the next version of Madek.
 
-    Changes:
+    ##Changes
+
       * fix: API doc links in the API browser
       * fix: API meta_key id regex check and docs
       * fix: proper counts on explore catalog 2nd level page
