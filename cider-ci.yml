@@ -1,29 +1,20 @@
 
 jobs:
 
-  include:
-    - path: cider-ci/jobs.yml
-      submodule: [deploy]
-
-  all-tests:
-    name: "All tests"
-    description: |
-      This job depends on all unit jobs that need to pass.
-      It is depended upon by the super-project!
-    priority: 999 # "empty" job = high priority
-    context:
-      task: "echo '✔︎ All dependencies have passed' ; exit 0"
+  integration-tests:
+    name: Integration Tests
     run_when: &DEFAULT_TRIGGERS
       any branch matches:
         type: branch
         include_match: ^.+$
-    depends_on:
-      integration-tests: {job_key: integration-tests,   type: job, states: [passed]}
-      meta-checks: {job_key: meta-checks,   type: job, states: [passed]}
-      test container deploy: {job_key: test-container-deploy,  type: job, states: [passed]}
-      all-tests of the api: {job_key: all-tests, type: job, submodule: [api], states: [passed]}
-      all-tests of the admin-webapp: {job_key: all-tests, type: job, submodule: [admin-webapp], states: [passed]}
-      all-tests of the webapp: {job_key: all-tests, type: job, submodule: [webapp], states: [passed]}
+    context:
+      include:
+        - path: cider-ci/integration-tests.yml
+          submodule: [integration-tests]
+
+  include:
+    - path: cider-ci/jobs.yml
+      submodule: [deploy]
 
   test-container-deploy:
     name: Test Deploy to a Container
@@ -35,32 +26,14 @@ jobs:
         - path: container-test/cider-ci/context.yml
           submodule: [deploy]
 
-  good-to-merge:
-    name: "Good To Merge"
+  lint:
+    name: "Linting"
     description: |
-      This job depends on all jobs that need to pass for "Delivery".
-      It is depended upon by GitHub's branch protection (for `master`)!
-    priority: 999 # "empty" job = high priority
-    context:
-      task: "echo '✔︎ All dependencies have passed' ; exit 0"
-    run_when: *DEFAULT_TRIGGERS
-    depends_on:
-      all-tests:  {job_key: all-tests,    type: job, states: [passed]}
-      good to merge of the api: {job_key: good-to-merge, type: job, submodule: [api], states: [passed]}
-      good to merge of the admin-webapp: {job_key: good-to-merge, type: job, submodule: [admin-webapp], states: [passed]}
-      good to merge of the webapp: {job_key: good-to-merge, type: job, submodule: [webapp], states: [passed]}
-
-  meta-checks:
-    name: Meta
-    description: |
-      Tasks that rely on external (out-of-repository) state.
-      Their state is not as fixed as in the other Jobs, so it might change over time.
-    priority: 3 # "I don't always run this, but when I do, it should be fast"
+      Code checks: static checks and metrics: complexity, duplication, and format,
+      also other consistency checks.
+    priority: 3
     run_when: *DEFAULT_TRIGGERS
     context:
-      include:
-        - path: cider-ci/contexts/meta-checks.yml
-          submodule: [webapp, datalayer]
       task_defaults:
         environment_variables:
           GIT_LINEAR_HISTORY_CHECK_START_SHA: 23545efe832c1cc97194392ad3dad11e3cc46aa0
@@ -69,11 +42,50 @@ jobs:
           traits: {"nodejs 4": yes}
           git_options: { submodules: { include_match: ^.*$ } }
           scripts: { test: { body: cider-ci/bin/check-datalayer-integrity } }
+      contexts:
+        include:
+          - path: cider-ci/context-components/lint/git-lint.yml
+            submodule: [api, datalayer]
 
-  integration-tests:
-    name: Integration Tests
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# META JOBS (only depend on other jobs)                                           #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+  all-tests:
+    name: "All tests"
+    description: |
+      This job depends on all unit jobs that need to pass.
+      It is depended upon by the super-project!
+      *Note that there still be more requirements for actually pushing to `origin`,
+      look in job **"Good to Merge"**!*
+    priority: 999 # "empty" job = high priority
     run_when: *DEFAULT_TRIGGERS
     context:
+      task: "echo '✔︎ All dependencies have passed' ; exit 0"
+    depends_on:
+      integration-tests: {job_key: integration-tests,   type: job, states: [passed]}
+      test container deploy: {job_key: test-container-deploy,  type: job, states: [passed]}
+      all-tests of the api: {job_key: all-tests, type: job, submodule: [api], states: [passed]}
+      all-tests of the admin-webapp: {job_key: all-tests, type: job, submodule: [admin-webapp], states: [passed]}
+      all-tests of the webapp: {job_key: all-tests, type: job, submodule: [webapp], states: [passed]}
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# GITHUB BRANCH PROTECTION                                                        #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+  # NOTE: this does a recursive check over all repos AND depends on some submodules
+  good-to-merge:
+    name: "⚑ Good To Merge"
+    description: |
+      This job depends on all jobs that need to pass for "Delivery".
+      It is depended upon by GitHub's branch protection (for `master`)!
+    priority: 999 # "empty" job = high priority
+    context:
       include:
-        - path: cider-ci/integration-tests.yml
-          submodule: [integration-tests]
+        - path: cider-ci/context-components/merge-checks.yml
+          submodule: [api, datalayer]
+    depends_on:
+      all-tests:  {job_key: all-tests,    type: job, states: [passed]}
+      good to merge of the api: {job_key: good-to-merge, type: job, submodule: [api], states: [passed]}
+      good to merge of the admin-webapp: {job_key: good-to-merge, type: job, submodule: [admin-webapp], states: [passed]}
+      good to merge of the webapp: {job_key: good-to-merge, type: job, submodule: [webapp], states: [passed]}
