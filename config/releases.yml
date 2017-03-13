@@ -5,6 +5,39 @@ releases:
 - version_major: 3
   version_minor: 0
   version_patch: 0
+  version_pre: '10.1'
+  name: Miedinger
+  info_url: 'https://en.wikipedia.org/wiki/Max_Miedinger'
+  description: |
+
+    Admin enhancements, a simple HD toggle for the video player and small fixes.
+
+    ## Changes
+
+    ### webapp
+    - feat: player: HD toggle
+    - fix: app: more secure authentication
+    - fix: deprecate License, make them behave like keywords
+    - fix: presenters: display of user permissions
+
+    ### admin
+    - feat: improve meta key creation/update
+    - feat: MetaKeys can be renamed and even moved
+    - feat: style: forms for "new" actions have a yellowish background
+    - fix: MetaKeys: enhance edit and move forms
+    - fix: MetaKeysCreation: auto-correct given id (vocabulary prefix)
+
+    ### deploy
+    - reverse-proxy: enable HSTS when using certbot
+    - reverse-proxy: avoid duplicate header
+    - reverse-proxy: add Forwarded-Proto header
+
+
+### HISTORY  ######################################################################
+
+- version_major: 3
+  version_minor: 0
+  version_patch: 0
   version_pre: '10.0'
   name: Miedinger
   info_url: 'https://en.wikipedia.org/wiki/Max_Miedinger'
@@ -37,8 +70,6 @@ releases:
       - fix: ui: more careful auto-linking for MetaDatumText
       - fix: ui: Vocabulary pages borders
       - perf: memoize `current_user`
-
-### HISTORY  ######################################################################
 
 - version_major: 3
   version_minor: 0
