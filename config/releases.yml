@@ -5,6 +5,21 @@ releases:
 - version_major: 3
   version_minor: 0
   version_patch: 0
+  version_pre: '10.2'
+  name: Miedinger
+  info_url: 'https://en.wikipedia.org/wiki/Max_Miedinger'
+  description: |
+
+    UX fixes for webapp:
+      - VideoPlayer: ensure inital state of HD toggle is displaye correctly
+      - Tile View: make caption clickable (fixes problem with very wide images)
+
+
+### HISTORY  ######################################################################
+
+- version_major: 3
+  version_minor: 0
+  version_patch: 0
   version_pre: '10.1'
   name: Miedinger
   info_url: 'https://en.wikipedia.org/wiki/Max_Miedinger'
@@ -31,9 +46,6 @@ releases:
     - reverse-proxy: enable HSTS when using certbot
     - reverse-proxy: avoid duplicate header
     - reverse-proxy: add Forwarded-Proto header
-
-
-### HISTORY  ######################################################################
 
 - version_major: 3
   version_minor: 0
