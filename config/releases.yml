@@ -11,6 +11,7 @@ releases:
   description: |
 
     UX fixes for webapp:
+
       - VideoPlayer: ensure inital state of HD toggle is displaye correctly
       - Tile View: make caption clickable (fixes problem with very wide images)
 
