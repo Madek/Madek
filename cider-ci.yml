@@ -1,6 +1,11 @@
 
 jobs:
 
+  include:
+    - path: cider-ci/jobs.yml
+      submodule: [deploy]
+
+
   integration-tests:
     name: Integration Tests
     run_when: &DEFAULT_TRIGGERS
@@ -11,20 +16,6 @@ jobs:
       include:
         - path: cider-ci/integration-tests.yml
           submodule: [integration-tests]
-
-  include:
-    - path: cider-ci/jobs.yml
-      submodule: [deploy]
-
-  test-container-deploy:
-    name: Test Deploy to a Container
-    run_when: *DEFAULT_TRIGGERS
-    depends_on:
-      build: { type: job, job_key: build, states: [passed]}
-    context:
-      include:
-        - path: container-test/cider-ci/context.yml
-          submodule: [deploy]
 
   lint:
     name: "Linting"
@@ -47,6 +38,30 @@ jobs:
           - path: cider-ci/context-components/lint/git-lint.yml
             submodule: [api, datalayer]
 
+  'build':
+    name: Build the deployment archive
+    run_when:
+      integration tests passed:
+        type: job
+        job_key: integration-tests
+        states: [passed]
+    # the reminder of this is merged in from the deploy submodule
+
+
+  test-container-deploy:
+    name: Test Deploy to a Container
+    run_when:
+      'build passed':
+        type: job
+        job_key: build
+        states: [passed]
+    depends_on:
+      build: { type: job, job_key: build, states: [passed]}
+    context:
+      include:
+        - path: container-test/cider-ci/context.yml
+          submodule: [deploy]
+
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # META JOBS (only depend on other jobs)                                           #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -59,7 +74,11 @@ jobs:
       *Note that there still be more requirements for actually pushing to `origin`,
       look in job **"Good to Merge"**!*
     priority: 999 # "empty" job = high priority
-    run_when: *DEFAULT_TRIGGERS
+    run_when:
+      'test-container-deploy passed':
+        type: job
+        job_key: test-container-deploy
+        states: [passed]
     context:
       task: "echo '✔︎ All dependencies have passed' ; exit 0"
     depends_on:
