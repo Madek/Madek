@@ -74,20 +74,15 @@ jobs:
       *Note that there still be more requirements for actually pushing to `origin`,
       look in job **"Good to Merge"**!*
     priority: 999 # "empty" job = high priority
-    run_when:
-      'test-container-deploy passed':
-        type: job
-        job_key: test-container-deploy
-        states: [passed]
     context:
       task: "echo '✔︎ All dependencies have passed' ; exit 0"
-    depends_on:
+    depends_on: &ALL_TEST_DEPENDS
       integration-tests: {job_key: integration-tests,   type: job, states: [passed]}
       test container deploy: {job_key: test-container-deploy,  type: job, states: [passed]}
       all-tests of the api: {job_key: all-tests, type: job, submodule: [api], states: [passed]}
       all-tests of the admin-webapp: {job_key: all-tests, type: job, submodule: [admin-webapp], states: [passed]}
       all-tests of the webapp: {job_key: all-tests, type: job, submodule: [webapp], states: [passed]}
-
+    run_when: *ALL_TEST_DEPENDS
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # GITHUB BRANCH PROTECTION                                                        #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -99,11 +94,6 @@ jobs:
       This job depends on all jobs that need to pass for "Delivery".
       It is depended upon by GitHub's branch protection (for `master`)!
     priority: 999 # "empty" job = high priority
-    run_when:
-      is on its way to master branch:
-        type: branch
-        include_match: ^integration/master$
-      and all tests passed: { type: job, job_key: all-tests, states: [passed] }
     context:
       include:
         - path: cider-ci/context-components/merge-checks.yml
