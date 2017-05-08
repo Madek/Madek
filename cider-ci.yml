@@ -25,10 +25,14 @@ jobs:
     priority: 3
     run_when: *DEFAULT_TRIGGERS
     context:
-      task_defaults:
-        environment_variables:
-          GIT_LINEAR_HISTORY_CHECK_START_SHA: d7075cad9786fd2c282c002d18545a37f622009c
+      ######
+      # NOTE: linear history check disabled, does not currently work for our releases
+      # task_defaults:
+      #   environment_variables:
+      #     GIT_LINEAR_HISTORY_CHECK_START_SHA: d7075cad9786fd2c282c002d18545a37f622009c
       tasks:
+        git-linear-history: { name: '[DISABLED] git: check linear history', scripts: { test: { body: 'echo DISABLED' } } }
+
         datalayer integrity:
           traits: {"nodejs 4": yes}
           git_options: { submodules: { include_match: ^.*$ } }
