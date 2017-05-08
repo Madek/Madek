@@ -5,7 +5,7 @@ releases:
 - version_major: 3
   version_minor: 12
   version_patch: 0
-  version_pre: null
+  version_pre: 'RC.2'
   name: 'YEÄH!'
   info_url: 'https://street.ars.is/people/a0975ba2-cd83-46b2-a361-f87aee9f3629'
   description: |
@@ -19,23 +19,39 @@ releases:
     ### webapp
 
     - feat: add content to clipboard in chunks
+    - feat: Keyword show page with info resources box
+    - feat: (beta) browse "similar entries"
     - feat: store user settings in db
+    - feat: allow sorting wherever possible (by title only for set boxes)
+    - feat: if entries result is empty use set fallback if only search filter or no filters used
+    - feat: ui: MetaDatumText: more readable line length
     - fix: remove drafts from clipboard again
     - fix: adjust draft text messages
     - fix: dashboard: clipboard always in menu, fallback message
     - fix: move default license hack from upload controller to settings
     - fix: remove select all button in box
     - fix: ui: show support tab only when configured
+    - fix: add clipboard to user menu
+    - fix: add sorting for vocabulary contents and vocabulary term
+    - fix: dont show pages selection when logged out
+    - fix: enable „remove all from clipboard“ for large sizes
+    - fix: only show selection for thumbnails if dropdown menu is shown
+    - fix: show meta data for list layout in list mode (one column)
+    - fix: ui: LoginMenu: no tabs if only system login
+    - perf: presenter: ActivityStream: optimize dump
+    - docs: render docs from feature specs
 
     ### admin-webapp
 
-    - feat: dashboard: system info
-    - feat: filtering people by subtype
+    - feat: dashboard: system and storage info
     - feat: manage Authentication Groups
-    - feat: show where meta keys are enabled for on vocabulary#show page
-    - feat: storage info on dashboard
+    - feat: SQL Reports (alpha, opt-in)
+    - feat: filtering people by subtype
     - feat: support default license/usage AppSettings
+    - feat: ui: show where meta keys are enabled for on vocabulary#show page
     - feat: ui: layout with wide navbar
+    - feat: ui: show admin comments on overview pages
+    - feat: ui: forms: use monospace textarea as setting inputs; ui adjustments
 
 ### HISTORY  ######################################################################
 
