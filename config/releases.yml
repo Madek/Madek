@@ -5,7 +5,7 @@ releases:
 - version_major: 3
   version_minor: 12
   version_patch: 0
-  version_pre: 'RC.2'
+  version_pre: null
   name: 'YEÄH!'
   info_url: 'https://street.ars.is/people/a0975ba2-cd83-46b2-a361-f87aee9f3629'
   description: |
