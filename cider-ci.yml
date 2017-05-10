@@ -25,22 +25,12 @@ jobs:
     priority: 3
     run_when: *DEFAULT_TRIGGERS
     context:
-      ######
-      # NOTE: linear history check disabled, does not currently work for our releases
-      # task_defaults:
-      #   environment_variables:
-      #     GIT_LINEAR_HISTORY_CHECK_START_SHA: d7075cad9786fd2c282c002d18545a37f622009c
       tasks:
-        git-linear-history: { name: '[DISABLED] git: check linear history', scripts: { test: { body: 'echo DISABLED' } } }
-
         datalayer integrity:
           traits: {"nodejs 4": yes}
           git_options: { submodules: { include_match: ^.*$ } }
           scripts: { test: { body: cider-ci/bin/check-datalayer-integrity } }
-      contexts:
-        include:
-          - path: cider-ci/context-components/lint/git-lint.yml
-            submodule: [api, datalayer]
+
 
   'build':
     name: Build the deployment archive
@@ -87,6 +77,7 @@ jobs:
       all-tests of the admin-webapp: {job_key: all-tests, type: job, submodule: [admin-webapp], states: [passed]}
       all-tests of the webapp: {job_key: all-tests, type: job, submodule: [webapp], states: [passed]}
     run_when: *ALL_TEST_DEPENDS
+
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # GITHUB BRANCH PROTECTION                                                        #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -98,12 +89,20 @@ jobs:
       This job depends on all jobs that need to pass for "Delivery".
       It is depended upon by GitHub's branch protection (for `master`)!
     priority: 999 # "empty" job = high priority
-    context:
-      include:
-        - path: cider-ci/context-components/merge-checks.yml
-          submodule: [api, datalayer]
     depends_on:
       all-tests:  {job_key: all-tests,    type: job, states: [passed]}
       good to merge of the api: {job_key: good-to-merge, type: job, submodule: [api], states: [passed]}
       good to merge of the admin-webapp: {job_key: good-to-merge, type: job, submodule: [admin-webapp], states: [passed]}
       good to merge of the webapp: {job_key: good-to-merge, type: job, submodule: [webapp], states: [passed]}
+    context:
+      task_defaults:
+        environment_variables:
+          GIT_LINEAR_HISTORY_CHECK_START_SHA: d7075cad9786fd2c282c002d18545a37f622009c
+      contexts:
+        include:
+          - path: cider-ci/context-components/lint/git-lint.yml
+            submodule: [api, datalayer]
+        "Merge Checks":
+          include:
+            - path: cider-ci/context-components/merge-checks.yml
+              submodule: [api, datalayer]
