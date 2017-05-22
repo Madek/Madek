@@ -1,5 +1,30 @@
 releases:
 
+- version_major: 3
+  version_minor: 13
+  version_patch: 0
+  version_pre: null
+  name: 'Töpffer'
+  info_url: https://de.wikipedia.org/wiki/Rodolphe_T%C3%B6pffer
+  description: |
+
+    ## Changes
+
+    * Add API-Tokens and remove sessions.
+
+    ### webapp
+
+      > fix: tri state checkbox for page selection
+      > fix: show group name as link on resource permissions form if user is group member
+      > fix: wording and separators on dashboard
+      > feature: vocabulary permissions and member list for group show
+      > feat: User API-Tokens
+      > refactor: dashboard sections concern
+      > feature: filters for sets and in sets
+      > feat: ui: icon: add 'checkbox-mixed'
+      > chore: assets: better icon font embed
+      > fix: Dashboard text
+
 ### CURRENT #######################################################################
 
 - version_major: 3
