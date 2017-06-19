@@ -2,6 +2,39 @@ releases:
 
 - version_major: 3
   version_minor: 13
+  version_patch: 1
+  version_pre: 'RC.1'
+  name: 'Töpffer'
+  info_url: https://de.wikipedia.org/wiki/Rodolphe_T%C3%B6pffer
+  description: |
+
+    ## Changes
+
+    * Filter by Permissions when searching/filtering
+    * "Share" Dialog for Entries
+
+    ### admin
+      - feat: context_keys: add move to top/bottom sortings
+      - feat: ui: replace huge dropdowns with choosing from listings
+      - feat: add snippets to SQL Reports
+      - feat: sql snippets: add query to find videos with incomplete previews
+
+    ### API
+      - fix: CORS preflights
+
+    ### webapp:
+      - feat: explore: catalog can use institutional groups
+      - feat: permissions filters
+      - feat: share modal and view
+      - fix: adjust texts for share modal and fix button order
+      - fix: do not show filename search for collection dashboard sections
+      - fix: make whole side filter async
+      - fix: ui: configured vocab order in 'all data' tab
+
+### CURRENT #######################################################################
+
+- version_major: 3
+  version_minor: 13
   version_patch: 0
   version_pre: null
   name: 'Töpffer'
@@ -24,8 +57,6 @@ releases:
       > feat: ui: icon: add 'checkbox-mixed'
       > chore: assets: better icon font embed
       > fix: Dashboard text
-
-### CURRENT #######################################################################
 
 - version_major: 3
   version_minor: 12
