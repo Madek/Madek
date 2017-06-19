@@ -39,7 +39,28 @@ jobs:
         type: job
         job_key: integration-tests
         states: [passed]
-    # the reminder of this is merged in from the deploy submodule
+    # ^- the reminder of this is merged in from the deploy submodule
+    context:
+      tasks:
+        docs:
+          tree_attachments:
+            feature-specs:
+              content_type: text/html
+              include_match: ^docs\/feature-specs\.html$
+          git_options:
+            submodules:
+              include_match: ^webapp$
+          traits:
+            curl: yes
+          scripts:
+            get-feature-specs:
+              body: |
+                set -exu
+                WEBAPP_TREE_ID=`cd webapp && git log -n1 --format="%T" HEAD`
+                mkdir -p docs
+                curl --fail -v -o docs/feature-specs.html "https://ci.zhdk.ch/cider-ci/storage/tree-attachments/${WEBAPP_TREE_ID}/tmp/features.html"
+                # sanity check: more than 100 Kbyte?
+                test 100 -lt `du -k docs/feature-specs.html | cut -f1`
 
 
   test-container-deploy:
