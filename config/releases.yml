@@ -1,5 +1,7 @@
 releases:
 
+### CURRENT #######################################################################
+
 - version_major: 3
   version_minor: 13
   version_patch: 1
@@ -14,24 +16,24 @@ releases:
     * "Share" Dialog for Entries
 
     ### admin
-      - feat: context_keys: add move to top/bottom sortings
-      - feat: ui: replace huge dropdowns with choosing from listings
-      - feat: add snippets to SQL Reports
-      - feat: sql snippets: add query to find videos with incomplete previews
+    - feat: context_keys: add move to top/bottom sortings
+    - feat: ui: replace huge dropdowns with choosing from listings
+    - feat: add snippets to SQL Reports
+    - feat: sql snippets: add query to find videos with incomplete previews
 
     ### API
-      - fix: CORS preflights
+    - fix: CORS preflights
 
     ### webapp:
-      - feat: explore: catalog can use institutional groups
-      - feat: permissions filters
-      - feat: share modal and view
-      - fix: adjust texts for share modal and fix button order
-      - fix: do not show filename search for collection dashboard sections
-      - fix: make whole side filter async
-      - fix: ui: configured vocab order in 'all data' tab
+    - feat: explore: catalog can use institutional groups
+    - feat: permissions filters
+    - feat: share modal and view
+    - fix: adjust texts for share modal and fix button order
+    - fix: do not show filename search for collection dashboard sections
+    - fix: make whole side filter async
+    - fix: ui: configured vocab order in 'all data' tab
 
-### CURRENT #######################################################################
+### HISTORY  ######################################################################
 
 - version_major: 3
   version_minor: 13
@@ -46,17 +48,14 @@ releases:
     * Add API-Tokens and remove sessions.
 
     ### webapp
-
-      > fix: tri state checkbox for page selection
-      > fix: show group name as link on resource permissions form if user is group member
-      > fix: wording and separators on dashboard
-      > feature: vocabulary permissions and member list for group show
-      > feat: User API-Tokens
-      > refactor: dashboard sections concern
-      > feature: filters for sets and in sets
-      > feat: ui: icon: add 'checkbox-mixed'
-      > chore: assets: better icon font embed
-      > fix: Dashboard text
+    - feat: ui: icon: add 'checkbox-mixed'
+    - feat: User API-Tokens
+    - feat: filters for sets and in sets
+    - feat: vocabulary permissions and member list for group show
+    - fix: Dashboard text
+    - fix: show group name as link on resource permissions form if user is group member
+    - fix: tri state checkbox for page selection
+    - fix: wording and separators on dashboard
 
 - version_major: 3
   version_minor: 12
@@ -69,11 +68,9 @@ releases:
     ## Changes
 
     ### Database
-
     - breaking change: migrate Licenses to Keywords with a 'custom type' ([PR 32](https://github.com/Madek/madek/pull/32))
 
     ### webapp
-
     - feat: add content to clipboard in chunks
     - feat: Keyword show page with info resources box
     - feat: (beta) browse "similar entries"
@@ -98,7 +95,6 @@ releases:
     - docs: render docs from feature specs
 
     ### admin-webapp
-
     - feat: dashboard: system and storage info
     - feat: manage Authentication Groups
     - feat: SQL Reports (alpha, opt-in)
@@ -108,8 +104,6 @@ releases:
     - feat: ui: layout with wide navbar
     - feat: ui: show admin comments on overview pages
     - feat: ui: forms: use monospace textarea as setting inputs; ui adjustments
-
-### HISTORY  ######################################################################
 
 - version_major: 3
   version_minor: 0
@@ -122,23 +116,21 @@ releases:
     ## Changes
 
     ### webapp
-
-        - feat:  Confgure AAI sign-in
-        - feat: view for vocabulary keyword terms
-        - feat: Add signed-in users group; identify ZHdK group by id (and not by name)
-        - feat: ui: persist list config in user session
-        - feat: configure login providers
-        - perf: add and remove collection children using arcs for performance
-        - fix: disable actions dropdown for uploader
-        - fix: add all text in dropdown should show total count
-        - fix: ui: ResourcePermissions: don't add existing subjects
-        - fix: login: cleanup routes
-        - fix: batch delete hint text
+    - feat: Confgure AAI sign-in
+    - feat: view for vocabulary keyword terms
+    - feat: Add signed-in users group; identify ZHdK group by id (and not by name)
+    - feat: ui: persist list config in user session
+    - feat: configure login providers
+    - perf: add and remove collection children using arcs for performance
+    - fix: disable actions dropdown for uploader
+    - fix: add all text in dropdown should show total count
+    - fix: ui: ResourcePermissions: don't add existing subjects
+    - fix: login: cleanup routes
+    - fix: batch delete hint text
 
     ### admin-webapp
-
-        - feat: display statistics on dashboard page
-        - fix: ui: list user groups as list
+    - feat: display statistics on dashboard page
+    - fix: ui: list user groups as list
 
 - version_major: 3
   version_minor: 0
@@ -154,26 +146,23 @@ releases:
 
     Workflow enhancements:
 
-      - beta: clipboard collection for batch processing
-      - add "batch delete" action
-      - enable list view mode in all "resource boxes"
+    * beta: clipboard collection for batch processing
+    * add "batch delete" action
+    * enable list view mode in all "resource boxes"
 
     ## Changes
 
     ### admin-webapp
-
     - feat: when moving meta_keys, make a log entry in admin_comment
     - ui/settings: make Support URL setting editable
     - feat: users: list groups an user belongs to, minor ui updates
     - meta_keys: list contexts in which a meta key is used
 
     ### deploy
-
     - settings: embeds config
     - Only dump structure_and_data, no more data only
 
     ### webapp
-
     - feat: enable list view everywhere; fix usage data relation information
     - feat: dashboard: async section has retry button with fallback link
     - feat: clipboard collection (beta)
@@ -201,8 +190,8 @@ releases:
 
     UX fixes for webapp:
 
-      - VideoPlayer: ensure inital state of HD toggle is displaye correctly
-      - Tile View: make caption clickable (fixes problem with very wide images)
+    * VideoPlayer: ensure inital state of HD toggle is displaye correctly
+    * Tile View: make caption clickable (fixes problem with very wide images)
 
 - version_major: 3
   version_minor: 0
@@ -245,30 +234,31 @@ releases:
     ## Changes
 
     ### admin-webapp
-      - vocabularies: improve ui
-      - fix meta key with People type creation
+
+    - vocabularies: improve ui
+    - fix meta key with People type creation
 
     ### webapp
-      - feat: view: VocabulariesIndex: list MetaKeys
-      - feat: view: Vocabulary: Permissions tab
-      - feat: view: VocabularyPermissions: group edit button
-      - feature: add relation counts to usage data
-      - feature: split more_data into more_data and usage_data
-      - fix: do not show keyword checkboxes if extensible
-      - fix: for transfer responsibility remove existing permissions for new user
-      - fix: meta data edit: extareas
-      - fix: meta data listing layout and texts
-      - fix: never set newly created Sets 'public'
-      - fix: only show delete icon on flyout if destroyable instead of editable
-      - fix: only show vocab keywords if content available
-      - fix: permissions layout and labels
-      - fix: show detailed name for institutional groups on permissions form
-      - fix: style: allow multine-line tag cloud items
-      - fix: style: MediaPlayer: fullscreen background
-      - fix: ui: cleanup url params in box links
-      - fix: ui: more careful auto-linking for MetaDatumText
-      - fix: ui: Vocabulary pages borders
-      - perf: memoize `current_user`
+    - feat: view: VocabulariesIndex: list MetaKeys
+    - feat: view: Vocabulary: Permissions tab
+    - feat: view: VocabularyPermissions: group edit button
+    - feature: add relation counts to usage data
+    - feature: split more_data into more_data and usage_data
+    - fix: do not show keyword checkboxes if extensible
+    - fix: for transfer responsibility remove existing permissions for new user
+    - fix: meta data edit: extareas
+    - fix: meta data listing layout and texts
+    - fix: never set newly created Sets 'public'
+    - fix: only show delete icon on flyout if destroyable instead of editable
+    - fix: only show vocab keywords if content available
+    - fix: permissions layout and labels
+    - fix: show detailed name for institutional groups on permissions form
+    - fix: style: allow multine-line tag cloud items
+    - fix: style: MediaPlayer: fullscreen background
+    - fix: ui: cleanup url params in box links
+    - fix: ui: more careful auto-linking for MetaDatumText
+    - fix: ui: Vocabulary pages borders
+    - perf: memoize `current_user`
 
 - version_major: 3
   version_minor: 0
@@ -281,24 +271,24 @@ releases:
     Adds functionality to transfer responsibility of Entries and Sets to another user,
     plus many fixes and performace enhancements (especially image-related)
 
-    ## changes
+    ## Changes
 
     ### webapp
-      - feat: transfer responsibility
-      - fix: view: increase resource box auto-loading
-      - fix: view: shuffle teaser and catalog images
-      - fix: view: image preview handling
-      - fix: view: collection highlights preview display
-      - fix: my: ActivityStream: remove 'beta', fallback message
-      - fix: keyword/term routes
+    - feat: transfer responsibility
+    - fix: view: increase resource box auto-loading
+    - fix: view: shuffle teaser and catalog images
+    - fix: view: image preview handling
+    - fix: view: collection highlights preview display
+    - fix: my: ActivityStream: remove 'beta', fallback message
+    - fix: keyword/term routes
 
     ### admin-webapp
-      - fix: webapp_keyword_path
-      - fix keywords & meta keys ordering
-      - fix: compute keyword usage correctly
+    - fix: webapp_keyword_path
+    - fix keywords & meta keys ordering
+    - fix: compute keyword usage correctly
 
     ### deploy
-      - reverse-proxy: enable letsencrypt cert if present
+    - reverse-proxy: enable letsencrypt cert if present
 
 - version_major: 3
   version_minor: 0
@@ -310,22 +300,22 @@ releases:
 
     **webapp**
 
-      - several fixes, some security related
-      - add custom urls management
-      - improved MetaData editing
-      - better Vocabulary-related UI
+    - several fixes, some security related
+    - add custom urls management
+    - improved MetaData editing
+    - better Vocabulary-related UI
 
     **admin-webapp**
 
-      - provide UI to cleanup keywords
-      - create/duplicate Context from Context/Vocab
+    - provide UI to cleanup keywords
+    - create/duplicate Context from Context/Vocab
 
     **general**
 
-      - core vocabulary fixes and improvements
-      - improved deploy, especially for first-time setup
+    - core vocabulary fixes and improvements
+    - improved deploy, especially for first-time setup
 
-    ## changes
+    ## Changes:
 
     ### admin-webapp
     - feat: provide keywords management
@@ -370,23 +360,23 @@ releases:
 
     webapp: better Vocabulary Pages and lots of small fixes
 
-    ## changes
+    ## Changes:
 
     ### webapp
-      - feat: add vocabulary links to „more data“ view
-      - feat: add hint texts to relations page
-      - feat: release info: deploy and dev info, all releases
-      - feat: vocabulary contents
-      - feat: release info page
-      - feat: meta data edit thumbnail links to media preview
-      - fix: autocomplete dropdown width
-      - fix: InputTextDate: fix missing inputs
-      - fix: style: consistent font rendering (webkit)
-      - fix: routes: fix terms with special characters
-      - fix: use larger previews for thumbnail link on meta data edit
-      - fix: hint texts for vocabulary keywords and contents
-      - fix: relations texts and layouting
-      - fix: vocab link color; fix: relations texts and layout
+    - feat: add vocabulary links to „more data“ view
+    - feat: add hint texts to relations page
+    - feat: release info: deploy and dev info, all releases
+    - feat: vocabulary contents
+    - feat: release info page
+    - feat: meta data edit thumbnail links to media preview
+    - fix: autocomplete dropdown width
+    - fix: InputTextDate: fix missing inputs
+    - fix: style: consistent font rendering (webkit)
+    - fix: routes: fix terms with special characters
+    - fix: use larger previews for thumbnail link on meta data edit
+    - fix: hint texts for vocabulary keywords and contents
+    - fix: relations texts and layouting
+    - fix: vocab link color; fix: relations texts and layout
 
 - version_major: 3
   version_minor: 0
@@ -400,21 +390,21 @@ releases:
     Webapp: Better file downloads and PDF viewing fixes;
     customizable HTML (e.g. custom styles or analytics).
 
-    ## Changes
+    ## Changes:
 
     ### webapp
-      - feat: view: layout: add extra content from settings
-      - fix: overwrite content type application/x-pdf with application/pdf
-      - fix: use filename with extension for original and preview file downloads
+    - feat: view: layout: add extra content from settings
+    - fix: overwrite content type application/x-pdf with application/pdf
+    - fix: use filename with extension for original and preview file downloads
 
     ### admin
-      - media_files: client/server batch encoding process
-      - fix: app-settings: hide secrets from deploy-config (Madek/madek_admin-webapp#1)
+    - media_files: client/server batch encoding process
+    - fix: app-settings: hide secrets from deploy-config (Madek/madek_admin-webapp#1)
 
     ### deploy
-      - @zhdk: add HD video previews
-      - @zhdk: add piwik tracking code
-      - add settings for webapp extra html content
+    - @zhdk: add HD video previews
+    - @zhdk: add piwik tracking code
+    - add settings for webapp extra html content
 
 - version_major: 3
   version_minor: 0
@@ -426,15 +416,15 @@ releases:
 
     adds media files view mass re-encoding of audio files to the admin ui.
 
-    ## Changes
+    ## Changes:
 
     ### admin-webapp
-      - feat: view: add deploy config to app_settings#index
-      - feat: media files listing with filters, mass re-encoding of audio files
+    - feat: view: add deploy config to app_settings#index
+    - feat: media files listing with filters, mass re-encoding of audio files
 
     ### deploy
-      - zencoder: set audio codec to mp3
-      - @zhdk: update AGW and zencoder config
+    - zencoder: set audio codec to mp3
+    - @zhdk: update AGW and zencoder config
 
 - version_major: 3
   version_minor: 0
@@ -449,17 +439,17 @@ releases:
     ## Changes:
 
     ### webapp
-      - feature: add relations pages for media entries (consistent with collections)
-      - feat: *beta* add ActivityStream / dashboard timeline
-      - fix: set return to for cancel button on meta data batch edit fallback form
-      - fix: null title for drafts in fallback meta data edit form
-      - fix: ui: VideoPlayer fullscreen styles
-      - fix: hacky workaround for buggy ActiveRecord. Sad.
+    - feature: add relations pages for media entries (consistent with collections)
+    - feat: *beta* add ActivityStream / dashboard timeline
+    - fix: set return to for cancel button on meta data batch edit fallback form
+    - fix: null title for drafts in fallback meta data edit form
+    - fix: ui: VideoPlayer fullscreen styles
+    - fix: hacky workaround for buggy ActiveRecord. Sad.
 
     ### deploy
-      - templates/rails.service: start puma in production env
-      - inventory: disable shibboleth on test-blank
-      - feat: archive-build: add datalayer tree id
+    - templates/rails.service: start puma in production env
+    - inventory: disable shibboleth on test-blank
+    - feat: archive-build: add datalayer tree id
 
 - version_major: 3
   version_minor: 0
@@ -474,7 +464,6 @@ releases:
     ## Changes:
 
     ### webapp
-
     - hotfix: audio player/audio entry view
 
 - version_major: 3
@@ -488,7 +477,6 @@ releases:
     ## Changes:
 
     ### webapp
-
     - feat: batch edit Collection Permissions
     - feat: collection batch meta data edit
     - feat: meta data edit grouping
@@ -512,7 +500,6 @@ releases:
     - perf: boost presenter api / dump speed
 
     ### api
-
     - feat: add collection-media-entry-arcs
     - feat: attributes :edit_session_updated_at, :meta_data_updated_at on collection and media_entry
     - feat: Increase the default per page from 10 to 100
@@ -521,11 +508,9 @@ releases:
     - fix: permission bug: get_metadata_and_previews was sufficient to download original
 
     ### admin-webapp
-
     - fix: adjust edit forms for new MetaKey. text_type
 
     ### deploy
-
     - config: zhdk: add setting ui_bundle_context_keys
 
 - version_major: 3
@@ -539,7 +524,6 @@ releases:
     ## Changes:
 
     ### webapp
-
     - feat: add MetaData Contexts tabs for Sets
     - feat: ui: AutoComplete: "prefill" fixed keywords
     - feat: ui: AutoComplete: style existing values, show pending and empty results
@@ -548,7 +532,6 @@ releases:
     - fix: translations: "imports" -> "drafts"
 
     ### api
-
     - fix: preview permission is sufficient for getting the media-file resource
 
     ### admin-webapp
@@ -569,24 +552,21 @@ releases:
 
     First pre-release for "Oppenheim".
 
-    Changes:
-    ========
+    ## Changes:
 
-    webapp
-    ------
-      - feat: CollectionRelations: show all
-      - feat: CollectionShow: children type switcher
-      - feat: display progress of processed files with Zencoder
-      - feat: views: Vocabulary info pages
-      - feat: sort set by last change
-      - fix: MetaDataEdit: don't submit form on enter
-      - fix: Explore: larger teaser images
-      - fix: PermissionsEdit: fullwidth inputs
-      - fix: close set dialog before forward
+    ### webapp
+    - feat: CollectionRelations: show all
+    - feat: CollectionShow: children type switcher
+    - feat: display progress of processed files with Zencoder
+    - feat: views: Vocabulary info pages
+    - feat: sort set by last change
+    - fix: MetaDataEdit: don't submit form on enter
+    - fix: Explore: larger teaser images
+    - fix: PermissionsEdit: fullwidth inputs
+    - fix: close set dialog before forward
 
-    admin-webapp
-    ------------
-      - feat: display progress of processed files with Zencoder
+    ### admin-webapp
+    - feat: display progress of processed files with Zencoder
 
 - version_major: 3
   version_minor: 0
@@ -598,11 +578,9 @@ releases:
 
     Fourth pre-release for Tinguely.
 
-    Changes:
-    ========
+    ## Changes:
 
-    General and DB:
-    ---------------
+    ### General and DB
     - Rework migration: consolidate ZHdK institutional groups
     - Adjust constraints on users table
     - Add login/email constraints on users table; adjust specs
@@ -610,8 +588,7 @@ releases:
     - migrate meta data groups
     - extract ZencoderRequester as common part
 
-    webapp
-    ------
+    ### webapp
     - feat: view: app: only show 'my' nav if logged in
     - feat: show edit sessions
     - feat: sorting for set children
@@ -622,8 +599,7 @@ releases:
     - fix: controller: don't check CSRF when accepting usage terms
     - fix: view: Home: welcome message from AppSettings
 
-    admin-webapp
-    ------------
+    ### admin-webapp
     - feat: reencode video with Zencoder
     - fix: after switching to another user redirect to his archive
 
@@ -637,34 +613,29 @@ releases:
 
     Third pre-release for Tinguely.
 
-    Changes:
-    ========
+    ## Changes:
 
-    General and DB:
-    ---------------
-      - Apply Unicode Normalisation to MetaDatumTexts and Keywords.
+    ### General and DB
+    - Apply Unicode Normalisation to MetaDatumTexts and Keywords.
 
-    webapp a7dc84e..2c13515:
-    -------------------------
-      - feat: "list" view (with MetaData) for Sets
-      - feat: "tile" view for all Listings (Entries and Sets)
-      - feat: show PDFs in browser (if supported)
-      - feat: save layout for sets, show saved layout by default
-      - feat: log into edit_sessions
-      - fix: don't try to show "Set Highlights" that are hidden for user
-      - fix: explore: count for 2nd level & specs
-      - fix: routes: add legacy redirects
-      - fix: better ranking of autocomplete search results
-      - visual fixes
+    ### webapp
+    - feat: "list" view (with MetaData) for Sets
+    - feat: "tile" view for all Listings (Entries and Sets)
+    - feat: show PDFs in browser (if supported)
+    - feat: save layout for sets, show saved layout by default
+    - feat: log into edit_sessions
+    - fix: don't try to show "Set Highlights" that are hidden for user
+    - fix: explore: count for 2nd level & specs
+    - fix: routes: add legacy redirects
+    - fix: better ranking of autocomplete search results
+    - visual fixes
 
-    admin-webapp:
-    ------------­
-      - list also not published Media Entries, add corresponding filter
+    ### admin-webapp
+    - list also not published Media Entries, add corresponding filter
 
-    api:
-    ---
-      - fix: missing docs for collections & filter_sets
-      - fix: meta_key id regex & update docs
+    ### api
+    - fix: missing docs for collections & filter_sets
+    - fix: meta_key id regex & update docs
 
 - version_major: 3
   version_minor: 0
@@ -675,17 +646,17 @@ releases:
   description: |
     Second release candidate of the next version of Madek.
 
-    ##Changes
+    ## Changes:
 
-      * fix: API doc links in the API browser
-      * fix: API meta_key id regex check and docs
-      * fix: proper counts on explore catalog 2nd level page
-      * fix: rewrite HTTP-redirect to HTTPs when using HTTPs
-      * fix: MediaPlayer post image
-      * fix: validation of new meta data for required context keys
-      * feat: use configured site_title as html title
-      * feat: set a default license/usage on upload
-      * feat: use configured site_title as html title
+    * fix: API doc links in the API browser
+    * fix: API meta_key id regex check and docs
+    * fix: proper counts on explore catalog 2nd level page
+    * fix: rewrite HTTP-redirect to HTTPs when using HTTPs
+    * fix: MediaPlayer post image
+    * fix: validation of new meta data for required context keys
+    * feat: use configured site_title as html title
+    * feat: set a default license/usage on upload
+    * feat: use configured site_title as html title
 
 - version_major: 3
   version_minor: 0
