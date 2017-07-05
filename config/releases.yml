@@ -3,6 +3,36 @@ releases:
 ### CURRENT #######################################################################
 
 - version_major: 3
+  version_minor: 14
+  version_patch: 0
+  version_pre: 'RC.1'
+  name: 'Bass'
+  info_url: http://www.sikart.ch/kuenstlerinnen.aspx?id=4023693
+  description: |
+
+    ## Changes
+
+    ### webapp
+    - feature: browse similar entries ("Stöbern")
+    - feature: for permissions filter add api filter; fix wording and order; add count for visibility filters
+    - feature: improve dashboard
+    - feature: introduce actions dropdown for media entry and collection pages
+    - feature: prefill autocomplete for extensible keywords too
+    - feature: selection limit modal
+    - fix: automatically open of sections for selected filter
+    - fix: do not show empty resource actions dropdown; change texts
+    - fix: do not show user/group permissions autocomplete in side filter if it is empty
+    - fix: sort featured set according to saved sorting
+    - fix: text in media entry export dialog
+    - fix: texts for entry and set dropdowns
+
+    ### admin-webapp
+    - feat: enable extended sorting for Vocabularies, MetaKeys & Keywords
+    - ui: show link to Assistant section on dashboard page
+
+### HISTORY  ######################################################################
+
+- version_major: 3
   version_minor: 13
   version_patch: 1
   version_pre: null
@@ -32,8 +62,6 @@ releases:
     - fix: do not show filename search for collection dashboard sections
     - fix: make whole side filter async
     - fix: ui: configured vocab order in 'all data' tab
-
-### HISTORY  ######################################################################
 
 - version_major: 3
   version_minor: 13
