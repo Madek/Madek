@@ -5,7 +5,7 @@ releases:
 - version_major: 3
   version_minor: 15
   version_patch: 0
-  version_pre: 'RC.2'
+  version_pre: null
   name: 'Lüthi'
   info_url: http://www.sikart.ch/kuenstlerinnen.aspx?id=4000319
   description: |
