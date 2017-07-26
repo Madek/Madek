@@ -5,7 +5,7 @@ releases:
 - version_major: 3
   version_minor: 15
   version_patch: 0
-  version_pre: 'RC.1'
+  version_pre: 'RC.2'
   name: 'Lüthi'
   info_url: http://www.sikart.ch/kuenstlerinnen.aspx?id=4000319
   description: |
@@ -18,6 +18,7 @@ releases:
     - feature: add exporter hint to share modal
     - feature: show modal when saving meta data form
     - feature/fix: add browse in dropdown for media entries; fix order of buttons and actions
+    - fix: for meta data edit only use vocabulary meta keys which are enabled for the resource type
     - fix: order by edit_session_updated_at instead of meta_data_updated_at
     - fix: tokens table headers and some text fixes
     - fix: after transfer responsibility show view permissions instead of edit permissions to prevent authorization exception
@@ -26,6 +27,7 @@ releases:
     - fix: icons and labels
     - fix: use transfer responsibility permissions rule to make admin mode working; set new rights for responsible user, not for logged in user
     - fix: do not show share button for unpublished entries
+    - spec: firefox esr path
 
     ### API
     - feature: Publish all properties of the meta-key resource
@@ -33,7 +35,10 @@ releases:
 
     ### admin-webapp
     - feature: restrict actions of meta keys belonging to madek_core Vocabulary
+    - spec: firefox esr path
 
+    ### integration-tests
+    - spec: prepare upgrade to Firefox ESR 52
 
 ### HISTORY  ######################################################################
 
