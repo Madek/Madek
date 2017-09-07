@@ -3,6 +3,28 @@ releases:
 ### CURRENT #######################################################################
 
 - version_major: 3
+  version_minor: 16
+  version_patch: 0
+  version_pre: 'RC.1'
+  name: 'Schilter'
+  info_url: http://www.sikart.ch/KuenstlerInnen.aspx?id=4001492
+  description: |
+
+    ## Changes
+
+    ### deploy
+    - Set new http hostnames for HSLU hosts
+
+    ### webapp
+    - feature: add person show view
+    - feature: merge login and explore page
+    - fix: after clicking ok on batch delete all modal show preloader as feedback to prevent user clicking several times
+    - fix: change „alle n von stapel entfernen“ to „stapel leeren“ since always all are removed, even if you only show sets or entries
+    - fix: reduce maximum selection in box to 36 instead of 50 since the set selection dialog does not work otherweise
+
+### HISTORY  ######################################################################
+
+- version_major: 3
   version_minor: 15
   version_patch: 0
   version_pre: null
@@ -39,8 +61,6 @@ releases:
 
     ### integration-tests
     - spec: prepare upgrade to Firefox ESR 52
-
-### HISTORY  ######################################################################
 
 - version_major: 3
   version_minor: 14
