@@ -5,21 +5,26 @@ releases:
 - version_major: 3
   version_minor: 17
   version_patch: 0
-  version_pre: 1
-  name: "to be defined"
-  info_url: "to be defined"
+  version_pre: 'RC.1'
+  name: 'Spyri'
+  info_url: https://de.wikipedia.org/wiki/Johanna_Spyri
   description: |
 
     ### API
     - feature: Manage groups via API
 
     ### ZHdK Integration
-    #
     - clean-up: Remove references to InstitutionalGroupsImporter
 
+    ### admin-webapp
+    - feat: the 'Ignored keyword keys for browsing' setting can be edited
 
+    ### webapp
+    - feat: create user token from external app
+    - feat: internationalization
+    - fix: styling of explore view
 
-### CURRENT #######################################################################
+### HISTORY  ######################################################################
 
 - version_major: 3
   version_minor: 16
@@ -40,8 +45,6 @@ releases:
     - fix: after clicking ok on batch delete all modal show preloader as feedback to prevent user clicking several times
     - fix: change „alle n von stapel entfernen“ to „stapel leeren“ since always all are removed, even if you only show sets or entries
     - fix: reduce maximum selection in box to 36 instead of 50 since the set selection dialog does not work otherweise
-
-### HISTORY  ######################################################################
 
 - version_major: 3
   version_minor: 15
