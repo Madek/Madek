@@ -3,6 +3,22 @@ releases:
 ### CURRENT #######################################################################
 
 - version_major: 3
+  version_minor: 18
+  version_patch: 0
+  version_pre: null
+  name: 'Hodler'
+  info_url: http://www.sikart.ch/KuenstlerInnen.aspx?id=4000055
+  description: |
+
+    ### datalayer
+    - fix: performance issue when saving keyword
+
+    ### webapp
+    - feature: batch action to remove meta datum from resources
+
+### HISTORY  ######################################################################
+
+- version_major: 3
   version_minor: 17
   version_patch: 2
   version_pre: null
@@ -23,8 +39,6 @@ releases:
     - feat: create user token from external app
     - feat: internationalization
     - fix: styling of explore view
-
-### HISTORY  ######################################################################
 
 - version_major: 3
   version_minor: 16
