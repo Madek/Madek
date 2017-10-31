@@ -4,7 +4,7 @@ releases:
 
 - version_major: 3
   version_minor: 18
-  version_patch: 0
+  version_patch: 1
   version_pre: null
   name: 'Hodler'
   info_url: http://www.sikart.ch/KuenstlerInnen.aspx?id=4000055
@@ -15,6 +15,9 @@ releases:
 
     ### webapp
     - feature: batch action to remove meta datum from resources
+
+    ### API
+    - feature: Manage users and groups via API: add `/users/` and `/group-users/` resources
 
 ### HISTORY  ######################################################################
 
