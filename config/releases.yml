@@ -3,8 +3,41 @@ releases:
 ### CURRENT #######################################################################
 
 - version_major: 3
+  version_minor: 19
+  version_patch: 0
+  version_pre: 'RC.1'
+  name: 'Bucher'
+  info_url: https://en.wikipedia.org/wiki/Heidi_Bucher
+  description: |
+
+    ### webapp
+    - feat: show deactivated user as Gelöschter User
+    - feat: search: do not return deactivated users
+    - feat: resource link to admin interface
+
+    ### API
+    - Don't list or show deactivated users
+
+    ### admin-webapp
+    - feat: add is_deactivated checkbox to user's form
+
+
+### HISTORY  ######################################################################
+
+- version_major: 3
   version_minor: 18
   version_patch: 1
+  version_pre: null
+  name: 'Hodler'
+  info_url: http://www.sikart.ch/KuenstlerInnen.aspx?id=4000055
+  description: |
+
+    ### API
+    - feature: Manage users and groups via API: add `/users/` and `/group-users/` resources
+
+- version_major: 3
+  version_minor: 18
+  version_patch: 0
   version_pre: null
   name: 'Hodler'
   info_url: http://www.sikart.ch/KuenstlerInnen.aspx?id=4000055
@@ -15,11 +48,6 @@ releases:
 
     ### webapp
     - feature: batch action to remove meta datum from resources
-
-    ### API
-    - feature: Manage users and groups via API: add `/users/` and `/group-users/` resources
-
-### HISTORY  ######################################################################
 
 - version_major: 3
   version_minor: 17
