@@ -5,7 +5,7 @@ releases:
 - version_major: 3
   version_minor: 19
   version_patch: 0
-  version_pre: 'RC.1'
+  version_pre: null
   name: 'Bucher'
   info_url: https://en.wikipedia.org/wiki/Heidi_Bucher
   description: |
