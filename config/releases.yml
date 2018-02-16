@@ -3,6 +3,21 @@ releases:
 ### CURRENT #######################################################################
 
 - version_major: 3
+  version_minor: 20
+  version_patch: 0
+  version_pre: null
+  name: 'Grdjic'
+  info_url: 'https://de.wikipedia.org/wiki/Eva_(Comic)'
+  description: |
+
+    ### webapp
+    - feat: error translations
+    - feat: set write scope when creating API tokens
+    - fix: embeds: support parameter for css-workaround
+
+### HISTORY  ######################################################################
+
+- version_major: 3
   version_minor: 19
   version_patch: 0
   version_pre: null
@@ -20,9 +35,6 @@ releases:
 
     ### admin-webapp
     - feat: add is_deactivated checkbox to user's form
-
-
-### HISTORY  ######################################################################
 
 - version_major: 3
   version_minor: 18
