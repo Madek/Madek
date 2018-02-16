@@ -5,9 +5,9 @@ releases:
 - version_major: 3
   version_minor: 20
   version_patch: 0
-  version_pre: 'RC.1'
-  name: '???'
-  info_url: '???'
+  version_pre: null
+  name: 'Grdjic'
+  info_url: 'https://de.wikipedia.org/wiki/Eva_(Comic)'
   description: |
 
     ### webapp
