@@ -3,6 +3,36 @@ releases:
 ### CURRENT #######################################################################
 
 - version_major: 3
+  version_minor: 21
+  version_patch: 0
+  version_pre: 'RC.1'
+  name: '???'
+  info_url: 'https://github.com/madek'
+  description: |
+
+    ### admin-webapp
+      - feat: multilingual labels, descriptions & hints of MetaKey/ContextKey
+      - remove teaser set from settings
+
+    ### api
+      - update datalayer
+      - datalayer: remove teaser_set presence validation
+
+    ### deploy
+      - combined scripts for importing ISO-3166 country codes
+      - proxy: add support for hosting separate user-docs
+
+    ### webapp
+      - chore: move script/migrate-country-codes to deploy
+      - fix: revert i18n for „batch add to set“ and „batch remove from set“
+      - fix: prefer translated fields over other fallbacks
+      - feat: multilingual labels, descriptions & hints of MetaKey/ContextKey
+      - datalayer: remove teaser_set presence validation
+      - fix browse-similar view when ignored_keyword_keys_for_browsing setting is missing
+
+### HISTORY  ######################################################################
+
+- version_major: 3
   version_minor: 20
   version_patch: 1
   version_pre: null
@@ -12,8 +42,6 @@ releases:
 
     ### deploy
     - Integrate HFG hosts; switch default protocol from http to https
-
-### HISTORY  ######################################################################
 
 - version_major: 3
   version_minor: 20
