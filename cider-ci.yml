@@ -119,7 +119,7 @@ jobs:
     context:
       task_defaults:
         environment_variables:
-          GIT_LINEAR_HISTORY_CHECK_START_SHA: 8e454e2e5a333fc4cf84db5386f465252b751acd
+          GIT_LINEAR_HISTORY_CHECK_START_SHA: 85a610ef4a9dc78216892ff10e9ad90c5162b5a2
       contexts:
         include:
           - path: cider-ci/context-components/lint/git-lint.yml
