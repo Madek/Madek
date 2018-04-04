@@ -4,6 +4,19 @@ releases:
 
 - version_major: 3
   version_minor: 21
+  version_patch: 1
+  version_pre: null
+  name: 'Aloïse'
+  info_url: 'http://www.sikart.ch/kuenstlerinnen.aspx?id=4022676'
+  description: |
+
+    ### datalayer
+      - hotfix: sanitize sql for search
+
+### HISTORY  ######################################################################
+
+- version_major: 3
+  version_minor: 21
   version_patch: 0
   version_pre: null
   name: 'Aloïse'
@@ -24,9 +37,6 @@ releases:
     ### deploy
       - combined scripts for importing ISO-3166 country codes
       - proxy: add support for hosting separate user-docs
-
-
-### HISTORY  ######################################################################
 
 - version_major: 3
   version_minor: 20
