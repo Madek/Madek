@@ -5,7 +5,7 @@ releases:
 - version_major: 3
   version_minor: 22
   version_patch: 0
-  version_pre: 'RC.1'
+  version_pre: 'RC.2'
   name: 'Taeuber-Arp'
   info_url: 'http://www.sikart.ch/kuenstlerinnen.aspx?id=4023423'
   description: |
