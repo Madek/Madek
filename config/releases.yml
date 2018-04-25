@@ -42,6 +42,18 @@ releases:
 
 - version_major: 3
   version_minor: 21
+  version_patch: 1
+  version_pre: null
+  name: 'Aloïse'
+  info_url: 'http://www.sikart.ch/kuenstlerinnen.aspx?id=4022676'
+  description: |
+
+    ### datalayer
+      - hotfix: sanitize sql for search
+
+
+- version_major: 3
+  version_minor: 21
   version_patch: 0
   version_pre: null
   name: 'Aloïse'
