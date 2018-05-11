@@ -5,7 +5,7 @@ git fetch --quiet
 
 git submodule foreach --quiet '\
   cd "$toplevel" \
-  && git diff origin/release...HEAD --submodule=log -- "$path" \
+  && git diff origin/stable...HEAD --submodule=log -- "$path" \
      | sed -e "s/Submodule //" \
      | grep -s "." \
      && echo "" \
