@@ -5,17 +5,19 @@ releases:
 - version_major: 3
   version_minor: 23
   version_patch: 0
-  version_pre: 'RC.2'
+  version_pre: 'RC.3'
   name: '???'
   info_url: '???'
   description: |
 
     ### webapp
     - feat: responsive embeds (audio/video)
+    - feat: add language switcher to the footer
 
     ### api
     -  remove admin_comment property from results
     -  add support for multilingual meta key labels
+    -  serve non-public vocabularies, meta keys and meta data by permissions
 
 ### HISTORY  ######################################################################
 
