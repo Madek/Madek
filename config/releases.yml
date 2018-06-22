@@ -3,6 +3,54 @@ releases:
 ### CURRENT #######################################################################
 
 - version_major: 3
+  version_minor: 23
+  version_patch: 0
+  version_pre: null
+  name: 'Zurbrügg'
+  info_url: 'https://de.wikipedia.org/wiki/Christina_Zurbrügg'
+  description: |
+    ### webapp
+    - feat: responsive embeds (audio/video)
+    - feat: add language switcher to the footer
+    ### api
+    -  remove admin_comment property from results
+    -  add support for multilingual meta key labels
+    -  serve non-public vocabularies, meta keys and meta data by permissions
+
+### HISTORY  ######################################################################
+
+- version_major: 3
+  version_minor: 22
+  version_patch: 0
+  version_pre: null
+  name: 'Taeuber-Arp'
+  info_url: 'http://www.sikart.ch/kuenstlerinnen.aspx?id=4023423'
+  description: |
+    ### webapp
+      - feat: people#show: list URI and description
+      - feat: prefer exact matches when searching users/people
+      - feat: show email in User-Autocomplete
+      - fix: autocompletes: correctly escape result contents
+      - fix: disable set cover zooming
+      - fix: show Users as deactivated in Permission forms
+      - fix: use configured external URL for sharing links
+      - fix: view: PersonShow: limit line lengths
+      - fix: MetaKey translations fallbacks
+      - translations: sort and lint
+      - translations: update from corrections
+      - datalayer: translate madek core vocab
+    ### api
+      - remove 'creator' from Entry, Set, Keyword
+    ### admin-webapp
+      - feat: filter deactivated users, identify them with proper label
+      - feat: People edit: description and URI
+      - feat: batch translation: fold section, sort by position
+      - fix: Keyword edit: description and URI
+      - fix: sql-assistant: correct string handling
+      - migration: helpers for assistant
+      - sql-assistant: find ambigously named people
+
+- version_major: 3
   version_minor: 21
   version_patch: 0
   version_pre: null
@@ -24,9 +72,6 @@ releases:
     ### deploy
       - combined scripts for importing ISO-3166 country codes
       - proxy: add support for hosting separate user-docs
-
-
-### HISTORY  ######################################################################
 
 - version_major: 3
   version_minor: 20
