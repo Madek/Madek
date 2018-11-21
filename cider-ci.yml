@@ -34,12 +34,7 @@ jobs:
 
   'build':
     name: Build the deployment archive
-    run_when:
-      integration tests passed:
-        type: job
-        job_key: integration-tests
-        states: [passed]
-    # ^- the reminder of this is merged in from the deploy submodule
+    run_when: *DEFAULT_TRIGGERS
     context:
       tasks:
         docs:
