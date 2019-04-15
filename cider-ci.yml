@@ -27,7 +27,7 @@ jobs:
     context:
       tasks:
         datalayer integrity:
-          traits: {"nodejs 4": yes}
+          traits: {"nodejs": yes}
           git_options: { submodules: { include_match: ^.*$ } }
           scripts: { test: { body: cider-ci/bin/check-datalayer-integrity } }
 
