@@ -1,10 +1,8 @@
-
 jobs:
-
   include:
+    - path: cider-ci/job-deploy-to-containers.yml
     - path: cider-ci/jobs.yml
       submodule: [deploy]
-
 
   integration-tests:
     name: Integration Tests
@@ -27,12 +25,11 @@ jobs:
     context:
       tasks:
         datalayer integrity:
-          traits: {"nodejs": yes}
+          traits: { "nodejs": yes }
           git_options: { submodules: { include_match: ^.*$ } }
           scripts: { test: { body: cider-ci/bin/check-datalayer-integrity } }
 
-
-  'build':
+  "build":
     name: Build the deployment archive
     run_when: *DEFAULT_TRIGGERS
     context:
@@ -57,24 +54,9 @@ jobs:
                 # sanity check: more than 100 Kbyte?
                 test 100 -lt `du -k docs/feature-specs.html | cut -f1`
 
-
-  test-container-deploy:
-    name: Test Deploy to a Container
-    run_when:
-      'build passed':
-        type: job
-        job_key: build
-        states: [passed]
-    depends_on:
-      build: { type: job, job_key: build, states: [passed]}
-    context:
-      include:
-        - path: container-test/cider-ci/context.yml
-          submodule: [deploy]
-
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-# META JOBS (only depend on other jobs)                                           #
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+  # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+  # META JOBS (only depend on other jobs)                                           #
+  # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
   all-tests:
     name: "All tests"
@@ -87,17 +69,27 @@ jobs:
     context:
       task: "echo '✔︎ All dependencies have passed' ; exit 0"
     depends_on: &ALL_TEST_DEPENDS
-      lint: {job_key: lint, type: job, states: [passed]}
-      integration-tests: {job_key: integration-tests, type: job, states: [passed]}
-      test container deploy: {job_key: test-container-deploy, type: job, states: [passed]}
-      all-tests of the api: {job_key: all-tests, type: job, submodule: [api], states: [passed]}
-      all-tests of the admin-webapp: {job_key: all-tests, type: job, submodule: [admin-webapp], states: [passed]}
-      all-tests of the webapp: {job_key: all-tests, type: job, submodule: [webapp], states: [passed]}
+      lint: { job_key: lint, type: job, states: [passed] }
+      integration-tests:
+        { job_key: integration-tests, type: job, states: [passed] }
+      test containers deploy:
+        { job_key: test-containers-deploy, type: job, states: [passed] }
+      all-tests of the api:
+        { job_key: all-tests, type: job, submodule: [api], states: [passed] }
+      all-tests of the admin-webapp:
+        {
+          job_key: all-tests,
+          type: job,
+          submodule: [admin-webapp],
+          states: [passed],
+        }
+      all-tests of the webapp:
+        { job_key: all-tests, type: job, submodule: [webapp], states: [passed] }
     run_when: *ALL_TEST_DEPENDS
 
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-# GITHUB BRANCH PROTECTION                                                        #
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+  # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+  # GITHUB BRANCH PROTECTION                                                        #
+  # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
   # NOTE: this does a recursive check over all repos AND depends on some submodules
   good-to-merge:
@@ -107,10 +99,28 @@ jobs:
       It is depended upon by GitHub's branch protection (for `master`)!
     priority: 999 # "empty" job = high priority
     depends_on:
-      all-tests:  {job_key: all-tests,    type: job, states: [passed]}
-      good to merge of the api: {job_key: good-to-merge, type: job, submodule: [api], states: [passed]}
-      good to merge of the admin-webapp: {job_key: good-to-merge, type: job, submodule: [admin-webapp], states: [passed]}
-      good to merge of the webapp: {job_key: good-to-merge, type: job, submodule: [webapp], states: [passed]}
+      all-tests: { job_key: all-tests, type: job, states: [passed] }
+      good to merge of the api:
+        {
+          job_key: good-to-merge,
+          type: job,
+          submodule: [api],
+          states: [passed],
+        }
+      good to merge of the admin-webapp:
+        {
+          job_key: good-to-merge,
+          type: job,
+          submodule: [admin-webapp],
+          states: [passed],
+        }
+      good to merge of the webapp:
+        {
+          job_key: good-to-merge,
+          type: job,
+          submodule: [webapp],
+          states: [passed],
+        }
     context:
       task_defaults:
         environment_variables:
