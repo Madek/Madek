@@ -16,3 +16,6 @@
 [submodule "admin-webapp"]
 	path = admin-webapp
 	url = https://github.com/Madek/madek_admin-webapp.git
+[submodule "graphql-api"]
+	path = graphql-api
+	url = https://github.com/Madek/madek-graphql-api
