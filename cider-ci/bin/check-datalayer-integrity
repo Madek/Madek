@@ -2,27 +2,35 @@
 
 //  config ------------------------------------------------------------------------
 const PATHS = [
-  'admin-webapp/datalayer',
-  'api/datalayer',
-  'webapp/datalayer'
-]
+  "admin-webapp/datalayer",
+  "api/datalayer",
+  "graphql-api/datalayer",
+  "webapp/datalayer"
+];
 // -------------------------------- 8< --------------------------------------------
 
-process.on('uncaughtException', (err) => {
-  console.log('Error!', err.message || err)
-  process.exit(1)
-})
+process.on("uncaughtException", err => {
+  console.log("Error!", err.message || err);
+  process.exit(1);
+});
 
-const assert = require('assert')
-const childProcess = require('child_process')
-const shell = (cmd) => childProcess.execSync(cmd).toString().replace(/\n$/, '')
+const assert = require("assert");
+const childProcess = require("child_process");
+const shell = cmd =>
+  childProcess
+    .execSync(cmd)
+    .toString()
+    .replace(/\n$/, "");
 
-const refs = PATHS.map((path) => [path, shell(`cd ${path} && git rev-parse HEAD`)])
+const refs = PATHS.map(path => [
+  path,
+  shell(`cd ${path} && git rev-parse HEAD`)
+]);
 
-console.log(`References: ${JSON.stringify(refs, 0, 2)}`)
+console.log(`References: ${JSON.stringify(refs, 0, 2)}`);
 
-refs.forEach((a) => {
-  refs.forEach((b) => {
-    assert.equal(a[1], b[1], `References not equal! ${a[0]} ≠ ${b[0]}`)
-  })
-})
+refs.forEach(a => {
+  refs.forEach(b => {
+    assert.equal(a[1], b[1], `References not equal! ${a[0]} ≠ ${b[0]}`);
+  });
+});
