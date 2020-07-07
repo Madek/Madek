@@ -6,7 +6,7 @@ CONFIG_DIR = File.join(File.dirname(__FILE__), '../config')
 releases = Dir.glob("#{CONFIG_DIR}/releases/*.md").map do |rel_file|
   raw = File.read(rel_file)
   data = YAML.safe_load(raw)
-  description = raw.split('---').slice(2).strip
+  description = raw.force_encoding('UTF-8').split('---').slice(2).strip
   data.merge('description' => description)
 end
   .sort_by do |r| # semver sort
