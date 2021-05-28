@@ -31,7 +31,11 @@ jobs:
 
   "build":
     name: Build the deployment archive
-    run_when: *DEFAULT_TRIGGERS
+    depends_on:
+      webapp precompilation is done: { submodule: [webapp], job_key: precompilation, type: job, states: [passed] }
+    run_when: 
+      <<: *DEFAULT_TRIGGERS
+      webapp precompilation is done: { submodule: [webapp], job_key: precompilation, type: job, states: [passed] }
     context:
       tasks:
         docs:
