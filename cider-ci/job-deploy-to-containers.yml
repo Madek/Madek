@@ -24,18 +24,18 @@ test-containers-deploy:
           - path: container-test/cider-ci/task.yml
             submodule: [deploy]
 
-      ubuntu-16-lts:
-        name: Ubuntu 16.04 LTS
+      ubuntu-18-lts:
+        name: Ubuntu 18.04 LTS
         environment_variables:
-          LXC_BASE_IMAGE: "ubuntu:16.04"
+          LXC_BASE_IMAGE: "ubuntu:18.04"
         include:
           - path: container-test/cider-ci/task.yml
             submodule: [deploy]
-      #
-      # ubuntu-18-lts:
-      #   name: Ubuntu 18.04 LTS
-      #   environment_variables:
-      #     LXC_BASE_IMAGE: "ubuntu:18.04"
-      #   include:
-      #     - path: container-test/cider-ci/task.yml
-      #       submodule: [deploy]
+      
+      ubuntu-20-lts:
+        name: Ubuntu 20.04 LTS
+        environment_variables:
+          LXC_BASE_IMAGE: "ubuntu:20.04"
+        include:
+          - path: container-test/cider-ci/task.yml
+            submodule: [deploy]
