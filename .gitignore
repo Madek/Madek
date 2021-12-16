@@ -1,10 +1,12 @@
+.DS_Store
+/config/releases.yml
 /config/settings.local.yml
 /madek_v3
+/media-service
 /reverse-proxy
 /storage
 /tmp
 config/git_refs.yml
+deploy-info.yml
 exporter/
 zhdk_integration/
-deploy-info.yml
-/config/releases.yml
