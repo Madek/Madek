@@ -15,6 +15,18 @@ jobs:
         - path: cider-ci/integration-tests.yml
           submodule: [integration-tests]
 
+  build:
+    depends_on: &BUILD_DEPS
+      webapp precompilation is done: { submodule: [webapp], job_key: precompilation, type: job, states: [passed] }
+      api uberjar has passed: { submodule: [api], job_key: build-uberjar, type: job, states: [passed] }
+    run_when:
+      <<: *DEFAULT_TRIGGERS
+      <<: *BUILD_DEPS
+    context:
+      include:
+        - path: cider-ci/contexts/build_archive.yml
+          submodule: [deploy]
+
   lint:
     name: "Linting"
     description: |
@@ -29,11 +41,11 @@ jobs:
           git_options: { submodules: { include_match: ^.*$ } }
           scripts: { test: { body: cider-ci/bin/check-datalayer-integrity } }
 
-  "build":
-    name: Build the deployment archive
+  docs:
+    name: docs
     depends_on:
       webapp precompilation is done: { submodule: [webapp], job_key: precompilation, type: job, states: [passed] }
-    run_when: 
+    run_when:
       <<: *DEFAULT_TRIGGERS
       webapp precompilation is done: { submodule: [webapp], job_key: precompilation, type: job, states: [passed] }
     context:
