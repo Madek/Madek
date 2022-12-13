@@ -1,0 +1,76 @@
+"git Lint":
+  task_defaults:
+
+    traits:
+      ci-ax101-02: true
+
+    git_options:
+      submodules:
+        include_match: .*
+
+    scripts:
+      git-prepare:
+        body: |
+          #!/usr/bin/env bash
+          #
+          # bring repo in a state to check various git things;
+          # CI does shallow copies and remote branches are no ncesssarily present
+          #
+          git repack -a
+          git submodule update --init --recursive --force
+          git submodule foreach --recursive 'git repack -a'
+          git submodule update --init --recursive --force
+          git submodule foreach --recursive 'git fetch origin'
+      test:
+        start_when:
+          git-prepared: { script_key: git-prepare }
+
+
+  tasks:
+
+    git-log-debug:
+      name: 'git: Log (for debug)'
+      scripts: {test: {body: "git log -n5"}}
+
+    git-linear-history:
+      name: 'git: check linear history'
+      scripts:
+        test:
+          body: |
+            #!/usr/bin/env bash
+            set -eux
+            # no merges between GIT_LINEAR_HISTORY_CHECK_START_SHA and the current commit,
+            # expect when merging in the stable release.
+            git fetch origin refs/heads/stable 1>&2 && {
+                test \
+                    $(git rev-list --merges origin/stable...HEAD) \
+                  = $(git rev-list --merges ${GIT_LINEAR_HISTORY_CHECK_START_SHA}...HEAD)
+              } || {
+                test -z $(git rev-list --merges ${GIT_LINEAR_HISTORY_CHECK_START_SHA}...HEAD)
+              }
+
+    git-branch-current:
+      name: "git: tree contains latest commit from origin/master"
+      aggregate_state: satisfy-last # relies on external state!
+      scripts:
+        test:
+          body:
+            read_and_replace_with: cider-ci/bin/check-git-branch-current
+
+    git-submodules-current:
+      name: "git: submodules trees all contain latest commit from origin/master"
+      aggregate_state: satisfy-last # relies on external state!
+      git_options: { submodules: { include_match: ^.*$ } }
+      scripts:
+        test:
+          body:
+            read_and_replace_with: cider-ci/bin/check-git-submodules-current
+
+    git-submodules-merged:
+      name: "git submodules are all merged to origin/master"
+      scripts:
+        test:
+          body:
+            read_and_replace_with: cider-ci/bin/check-git-submodules-are-merged
+
+

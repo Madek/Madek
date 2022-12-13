@@ -14,7 +14,6 @@ require 'open3'
 SUBS = [
   ["admin-webapp", "datalayer"],
   ["api", "datalayer"],
-  ["graphql-api", "datalayer"],
   ["webapp", "datalayer"],
 ]
 
