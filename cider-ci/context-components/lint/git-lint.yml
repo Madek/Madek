@@ -1,9 +1,6 @@
 "git Lint":
   task_defaults:
 
-    traits:
-      ci-ax101-02: true
-
     git_options:
       submodules:
         include_match: .*
