@@ -4,16 +4,25 @@ jobs:
     - path: cider-ci/jobs.yml
       submodule: [deploy]
 
-  integration-tests:
-    name: Integration Tests
+  integration-tests-preflight-check:
+    name: Integration Tests Preflight Check
+    description: |
+      This jobs checks with a dummy execution if all scripts are working
+      together.
     run_when: &DEFAULT_TRIGGERS
       any branch matches:
         type: branch
         include_match: ^.+$
     context:
-      include:
-        - path: cider-ci/integration-tests.yml
-          submodule: [integration-tests]
+      include: 
+        - cider-ci/context-components/integration-tests.yml
+      tasks: 
+        dummy: 
+          scripts:
+            test:
+              body: "echo '✔︎ just a no-op dummy' ; exit 0"
+
+
 
   build:
     depends_on: &BUILD_DEPS
@@ -27,6 +36,68 @@ jobs:
         - path: cider-ci/contexts/build_archive.yml
           submodule: [deploy]
 
+  integration-tests-plain:
+    name: Integration Tests Plain
+    depends_on: &INT_DEPS
+      integration-tests-preflight-check: 
+        job_key: integration-tests-preflight-check 
+        type: job 
+        states: [passed] 
+    run_when: *INT_DEPS
+    context:
+      include: 
+        - cider-ci/context-components/integration-tests.yml
+      tasks:
+        include:
+          - submodule: [integration-tests]
+            path: cider-ci/generators/plain_features.yml
+
+  integration-tests-release-info:
+    name: Integration Tests Release Info
+    depends_on: &INT_DEPS
+      integration-tests-preflight-check: 
+        job_key: integration-tests-preflight-check 
+        type: job 
+        states: [passed] 
+    run_when: *INT_DEPS
+    context:
+      include: 
+        - cider-ci/context-components/integration-tests.yml
+      task_defaults:
+        include: [cider-ci/task-components/set-release-info.yml]
+      tasks:
+        include:
+          - submodule: [integration-tests]
+            path: cider-ci/generators/release_info_features.yml
+
+  integration-tests-cors_disabled:
+    name: Integration Tests cors_disabled
+    depends_on: &INT_DEPS
+      integration-tests-preflight-check: 
+        job_key: integration-tests-preflight-check 
+        type: job 
+        states: [passed] 
+    run_when: *INT_DEPS
+    context:
+      include: 
+        - cider-ci/context-components/integration-tests.yml
+      task_defaults:
+        include: [cider-ci/task-components/disable-cors.yml]
+      tasks:
+        include:
+          - submodule: [integration-tests]
+            path: cider-ci/generators/cors_disabled_features.yml
+
+  integration-tests:
+    name: Integration Tests Aggregator
+    depends_on: &REAL_INT_TESTS
+      plain: {job_key: integration-tests-plain, type: job, states: [passed]}
+      release-info: {job_key: integration-tests-release-info, type: job, states: [passed]}
+      cors-disabled: {job_key: integration-tests-cors_disabled, type: job, states: [passed]}
+    run_when: *REAL_INT_TESTS
+    context:
+      task: "echo '✔︎ All Integration Tests passed' ; exit 0"
+
   lint:
     name: "Linting"
     description: |
@@ -35,12 +106,18 @@ jobs:
     priority: 3
     run_when: *DEFAULT_TRIGGERS
     context:
+      task_defaults:
+        environment_variables:
+          DATALAYER_DIR: '{{CIDER_CI_WORKING_DIR}}/api/datalayer'
+      contexts:
+        include:
+          - path: cider-ci/context-components/lint/git-lint.yml
+            submodule: [api, datalayer]
       tasks:
         datalayer integrity:
           traits: { "nodejs": yes }
           git_options: { submodules: { include_match: ^.*$ } }
           scripts: { test: { body: cider-ci/bin/check-datalayer-integrity } }
-
   docs:
     name: docs
     depends_on:

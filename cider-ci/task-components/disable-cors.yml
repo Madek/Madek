@@ -1,0 +1,9 @@
+scripts:
+  set-release-info:
+    body: |
+      sed -i 's/cors_enabled: true/cors_enabled: false/' ./api/config/settings.yml
+  before-run: 
+    start_when: 
+      sri: 
+        script_key: set-release-info
+

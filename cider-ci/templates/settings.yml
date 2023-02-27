@@ -1,0 +1,21 @@
+default_storage_dir: "{{CIDER_CI_WORKING_DIR}}/tmp/storage"
+
+madek_master_secret: secret
+madek_session_cookie_name: madek-session
+madek_external_base_url: "http://localhost:{{REVERSE_PROXY_HTTP_PORT}}"
+
+services:
+
+  api:
+
+    http:
+      host: localhost
+      port: {{API_HTTP_PORT}}
+      context: ""
+      sub_context: /api
+      ssl: false
+
+    nrepl:
+      port: {{API_NREPL_PORT}}
+      bind: "127.0.0.1"
+      enabled: true
