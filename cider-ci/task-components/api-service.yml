@@ -1,0 +1,24 @@
+include:
+- submodule: [api]
+  path: cider-ci/task-components/service.yml
+
+ports:
+  API_HTTP_PORT:
+    min: 3100
+    max: 3200
+  API_NREPL_PORT:
+    min: 7000
+    max: 7999
+
+environment_variables:
+  API_DIR: '{{CIDER_CI_WORKING_DIR}}/api'
+
+templates: 
+  # repeat from API CI config because we need proper paths
+  settings.local for the api:
+    src: api/cider-ci/templates/settings.yml
+    dest: api/config/settings.local.yml
+  settings.local for the api datalayer:
+    src: api/cider-ci/templates/settings.yml
+    dest: api/datalayer/config/settings.local.yml
+

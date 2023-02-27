@@ -1,0 +1,8 @@
+scripts:
+  set-release-info:
+    body: cp integration-tests/spec/fixtures/config/* config/
+  before-run: 
+    start_when: 
+      sri: 
+        script_key: set-release-info
+

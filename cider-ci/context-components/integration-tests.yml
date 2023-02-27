@@ -1,0 +1,47 @@
+task_defaults:
+
+  scripts: 
+    before-run:
+      body: echo 'this is a dummy' && exit 0
+    api-run: &BEFORE_RUN
+      start_when: 
+        before run: 
+          script_key: before-run
+          states: [passed]
+    webapp-run: *BEFORE_RUN
+    admin-webapp-run: *BEFORE_RUN
+
+  include: 
+    - submodule: [webapp, datalayer]
+      path: cider-ci/task-components/database.yml
+    - cider-ci/task-components/admin-webapp-service.yml
+    - cider-ci/task-components/api-service.yml
+    - cider-ci/task-components/reverse-proxy.yml
+    - cider-ci/task-components/settings.yml
+    - cider-ci/task-components/webapp-service.yml
+    - cider-ci/task-components/integration-test.yml
+    - cider-ci/task-components/database-restore-personas.yml
+
+  git_options: { submodules: { include_match: ^.*$ } }
+
+  environment_variables:
+    DATABASE: madek_integration_{{CIDER_CI_TRIAL_ID}}
+    DATALAYER_DIR: '{{CIDER_CI_WORKING_DIR}}/webapp/datalayer'
+    DISABLE_HTTPS_THIS_IS_A_BAD_IDEA: but_its_ok_for_integration_testing
+    DISABLE_SECRETS_STRENGTH_CHECK: 'yes'
+    RAILS_ENV: production
+
+  trial_attachments:
+    screenshots:
+      include_match: 'integration-tests\/tmp\/.+\.png$'
+      content_type: image/png
+    logs:
+      include_match: '\/logs?\/.+\.log$'
+      content_type: text/plain
+    config:
+      include_match: 'config\/.+\.ya?ml$'
+      exclude_match: '\/vendor\/'
+      content_type: text/yaml
+    reverse-proxy-config:
+      include_match: 'integration-tests\/reverse-proxy\/conf/.+\.conf$'
+      content_type: text/plain

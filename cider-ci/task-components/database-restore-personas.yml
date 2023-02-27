@@ -1,0 +1,17 @@
+scripts:
+  database-restore-personas:
+    start_when:
+      db created:
+        script_key: create-database
+    body: |
+      #!/usr/bin/env bash
+      set -euo pipefail
+      unset PGPORT; unset PGUSER
+      export PGPORT=${PG10PORT} 
+      export PGUSER=${PG10USER} 
+      psql -a -d "${DATABASE}" -c "DELETE FROM schema_migrations" 
+      pg_restore --data-only --disable-triggers --exit-on-error -x -O -d "${DATABASE}" ${DATALAYER_DIR}/db/personas.pgbin
+  before-run:
+    start_when:
+      personas restored:
+        script_key: database-restore-personas

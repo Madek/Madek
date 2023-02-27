@@ -1,0 +1,48 @@
+environment_variables:
+  INTEGRATION_TESTS_DIR: '{{CIDER_CI_WORKING_DIR}}/integration-tests'
+
+scripts: 
+
+  int-tests-ruby-setup:
+    body: |
+      #!/usr/bin/env bash
+      set -euo pipefail
+      ${INTEGRATION_TESTS_DIR}/bin/env/ruby-setup
+
+  int-tests-firefox-setup:
+    body: |
+      #!/usr/bin/env bash
+      set -euo pipefail
+      ${INTEGRATION_TESTS_DIR}/bin/env/firefox-setup
+
+  int-tests-geckodriver-setup:
+    body: |
+      #!/usr/bin/env bash
+      set -euo pipefail
+      ${INTEGRATION_TESTS_DIR}/bin/env/geckodriver-setup
+
+  show-env:
+    body: |
+      #!/usr/bin/env bash
+      env | sort | uniq
+
+  test:
+    start_when:
+      int-tests-ruby-setup:
+        script_key: int-tests-ruby-setup
+      int-tests-geckodriver-setup:
+        script_key: int-tests-geckodriver-setup
+      int-tests-firefox-setup:
+        script_key: int-tests-firefox-setup
+
+    body: |
+      #!/usr/bin/env bash
+      set -euo pipefail
+      cd $INTEGRATION_TESTS_DIR
+      echo "# RSPEC_NAME: $RSPEC_NAME"
+      echo "# RSPEC_TEST: $RSPEC_TEST"
+      mkdir -p log
+      unset PGPORT; unset PGUSER
+      PGPORT=${PG10PORT} PGUSER=${PG10USER} \
+        xvfb-run -a -e log/xvfb.log \
+        ./bin/rspec "${RSPEC_TEST}"

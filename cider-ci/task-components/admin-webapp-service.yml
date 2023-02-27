@@ -1,0 +1,64 @@
+include:
+  - submodule: [admin-webapp]
+    path: cider-ci/task-components/database.yml
+  - submodule: [admin-webapp]
+    path: cider-ci/task-components/ruby-setup.yml
+
+ports:
+  ADMIN_WEBAPP_HTTP_PORT:
+    min: 3100
+    max: 3200
+
+environment_variables:
+  ADMIN_WEBAPP_DIR: '{{CIDER_CI_WORKING_DIR}}/admin-webapp'
+
+templates:
+  secrets for the admin-webapp:
+    src: cider-ci/templates/secrets.yml
+    dest: admin-webapp/config/secrets.yml
+
+scripts:
+
+  admin-webapp-run:
+    body: |
+      #!/usr/bin/env bash
+      set -euo pipefail
+      cd ${ADMIN_WEBAPP_DIR}
+      PORT=${ADMIN_WEBAPP_HTTP_PORT} bundle exec rails s
+    start_when:
+      ruby is set up:
+        script_key: admin-webapp-bundle-ruby
+      the db has been created:
+        script_key: create-database
+      the db has been configure:
+        script_key: admin-webapp-configure-rails-db
+
+  admin-webapp-is-running:
+    timeout: 1 Minute 30 Seconds
+    body: |
+      #!/usr/bin/env bash
+      set -euo pipefail
+      until curl --silent --fail -I  \
+        http://localhost:${ADMIN_WEBAPP_HTTP_PORT}/admin/status;
+      do sleep 1; done
+    start_when:
+      admin-webapp-run is in executing state:
+        script_key: admin-webapp-run
+        states: [executing]
+
+  test:
+    start_when:
+      the admin-webapp is running:
+        script_key: admin-webapp-is-running
+
+  admin-webapp-shutdown:
+    timeout: 5 Seconds
+    body: |
+      #!/usr/bin/env bash
+      set -euo pipefail
+      kill -INT $(lsof -t -wni tcp:${ADMIN_WEBAPP_HTTP_PORT})
+      sleep 1
+    start_when:
+      tests are in terminal state:
+        script_key: test
+        states: [aborted, defective,failed, passed, skipped]

@@ -1,0 +1,4 @@
+templates:
+  settings:
+    src: cider-ci/templates/settings.yml
+    dest: config/settings.local.yml
