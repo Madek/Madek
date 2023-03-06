@@ -1,5 +1,13 @@
 "git Lint":
+
+  include:
+    - submodule: [webapp, datalayer]
+      path: cider-ci/context-components/merge-checks.yml
+
   task_defaults:
+
+    environment_variables:
+      DATALAYER_DIR: '{{CIDER_CI_WORKING_DIR}}/webapp/datalayer'
 
     git_options:
       submodules:
@@ -62,12 +70,5 @@
         test:
           body:
             read_and_replace_with: cider-ci/bin/check-git-submodules-current
-
-    git-submodules-merged:
-      name: "git submodules are all merged to origin/master"
-      scripts:
-        test:
-          body:
-            read_and_replace_with: cider-ci/bin/check-git-submodules-are-merged
 
 
