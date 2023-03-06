@@ -23,14 +23,6 @@ jobs:
               body: "echo '✔︎ just a no-op dummy' ; exit 0"
 
 
-  integration-tests-old:
-    name: Integration Tests OLD
-    run_when: *DEFAULT_TRIGGERS
-    context:
-      include:
-        - path: cider-ci/integration-tests.yml
-          submodule: [integration-tests]
-
 
   build:
     depends_on: &BUILD_DEPS
