@@ -13,23 +13,23 @@
       submodules:
         include_match: .*
 
-    scripts:
-      git-prepare:
-        body: |
-          #!/usr/bin/env bash
-          #
-          # bring repo in a state to check various git things;
-          # CI does shallow copies and remote branches are no ncesssarily present
-          #
-          git repack -a
-          git submodule update --init --recursive --force
-          git submodule foreach --recursive 'git repack -a'
-          git submodule update --init --recursive --force
-          git submodule foreach --recursive 'git fetch origin'
-      test:
-        start_when:
-          git-prepared: { script_key: git-prepare }
-
+#    scripts:
+#      git-prepare:
+#        body: |
+#          #!/usr/bin/env bash
+#          #
+#          # bring repo in a state to check various git things;
+#          # CI does shallow copies and remote branches are no ncesssarily present
+#          #
+#          git repack -a
+#          git submodule update --init --recursive --force
+#          git submodule foreach --recursive 'git repack -a'
+#          git submodule update --init --recursive --force
+#          git submodule foreach --recursive 'git fetch origin'
+#      test:
+#        start_when:
+#          git-prepared: { script_key: git-prepare }
+ 
 
   tasks:
 
