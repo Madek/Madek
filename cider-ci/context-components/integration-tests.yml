@@ -30,6 +30,7 @@ task_defaults:
     DISABLE_HTTPS_THIS_IS_A_BAD_IDEA: but_its_ok_for_integration_testing
     DISABLE_SECRETS_STRENGTH_CHECK: 'yes'
     RAILS_ENV: production
+    PGVERSION: '15'
 
   trial_attachments:
     screenshots:

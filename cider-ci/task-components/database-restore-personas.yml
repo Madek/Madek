@@ -6,9 +6,7 @@ scripts:
     body: |
       #!/usr/bin/env bash
       set -euo pipefail
-      unset PGPORT; unset PGUSER
-      export PGPORT=${PG10PORT} 
-      export PGUSER=${PG10USER} 
+      source $DATALAYER_DIR/cider-ci/bin/pg_env_set 
       psql -a -d "${DATABASE}" -c "DELETE FROM schema_migrations" 
       pg_restore --data-only --disable-triggers --exit-on-error -x -O -d "${DATABASE}" ${DATALAYER_DIR}/db/personas.pgbin
   before-run:
