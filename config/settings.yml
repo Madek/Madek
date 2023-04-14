@@ -2,7 +2,7 @@ madek_master_secret: 'secret'
 madek_external_base_url: 'http://localhost:3100'
 
 madek_api_session_enabled: true
-madek_session_cookie_name: 'madek-session'
+# madek_session_cookie_name 'madek-session' is hardcoded now
 madek_session_validity_duration: 7 days
 
 database: {}
