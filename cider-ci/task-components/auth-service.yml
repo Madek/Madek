@@ -1,0 +1,16 @@
+include:
+- submodule: [api]
+  path: cider-ci/task-components/service.yml
+
+ports:
+  MADEK_AUTH_HTTP_PORT:
+    min: 3100
+    max: 3200
+  MADEK_AUTH_NREPL_PORT:
+    min: 7000
+    max: 7999
+
+environment_variables:
+  AUTH_DIR: '{{CIDER_CI_WORKING_DIR}}/auth'
+
+
