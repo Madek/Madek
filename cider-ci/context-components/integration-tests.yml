@@ -3,6 +3,14 @@ task_defaults:
   scripts: 
     before-run:
       body: echo 'this is a dummy' && exit 0
+      start_when:
+        auth-build: 
+          script_key: auth-build
+          states: [passed]
+        api-build: 
+          script_key: api-build
+          states: [passed]
+
     api-run: &BEFORE_RUN
       start_when: 
         before run: 
@@ -10,6 +18,7 @@ task_defaults:
           states: [passed]
     webapp-run: *BEFORE_RUN
     admin-webapp-run: *BEFORE_RUN
+    auth-run: *BEFORE_RUN
 
   include: 
     - submodule: [webapp, datalayer]
@@ -21,16 +30,24 @@ task_defaults:
     - cider-ci/task-components/webapp-service.yml
     - cider-ci/task-components/integration-test.yml
     - cider-ci/task-components/database-restore-personas.yml
+    - submodule: [auth]
+      path: cider-ci/task-components/service.yml
 
   git_options: { submodules: { include_match: ^.*$ } }
 
+  ports:
+    MADEK_AUTH_HTTP_PORT: 
+      min: 3100
+      max: 3200
+
   environment_variables:
+    AUTH_DIR: '{{CIDER_CI_WORKING_DIR}}/auth'
     DATABASE: madek_integration_{{CIDER_CI_TRIAL_ID}}
     DATALAYER_DIR: '{{CIDER_CI_WORKING_DIR}}/webapp/datalayer'
     DISABLE_HTTPS_THIS_IS_A_BAD_IDEA: but_its_ok_for_integration_testing
     DISABLE_SECRETS_STRENGTH_CHECK: 'yes'
-    RAILS_ENV: production
     PGVERSION: '15'
+    RAILS_ENV: production
 
   trial_attachments:
     screenshots:
