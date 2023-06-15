@@ -1,7 +1,7 @@
 DEV_INITIALS=mk
 RELEASE_MAJOR_MINOR=4.0
 RELEASE_PATCH=0
-RELEASE_PRE='-RC.1' # or '' for stable release
+RELEASE_PRE='' # or '' for stable release
 VERSION_PREFIX='v' # for madek its 'v' 
 
 RELEASE_MAIN="${RELEASE_MAJOR_MINOR}.${RELEASE_PATCH}"
