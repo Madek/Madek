@@ -43,6 +43,6 @@ scripts:
       echo "# RSPEC_TEST: $RSPEC_TEST"
       mkdir -p log
       unset PGPORT; unset PGUSER
-      PGPORT=${PG10PORT} PGUSER=${PG10USER} \
+      PGPORT=${PG15PORT} PGUSER=${PG15USER} \
         xvfb-run -a -e log/xvfb.log \
         ./bin/rspec "${RSPEC_TEST}"
