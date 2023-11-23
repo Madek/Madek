@@ -177,6 +177,8 @@ jobs:
           submodule: [admin-webapp],
           states: [passed],
         }
+      all-tests of the auth:
+        { job_key: all-tests, type: job, submodule: [auth], states: [passed] }
       all-tests of the webapp:
         { job_key: all-tests, type: job, submodule: [webapp], states: [passed] }
     run_when: *ALL_TEST_DEPENDS
@@ -208,6 +210,13 @@ jobs:
           submodule: [admin-webapp],
           states: [passed],
         }
+      good to merge of the auth:
+        {
+          job_key: good-to-merge,
+          type: job,
+          submodule: [auth],
+          states: [passed],
+      }
       good to merge of the webapp:
         {
           job_key: good-to-merge,
