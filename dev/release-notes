@@ -8,7 +8,7 @@ git fetch --quiet
 
 git submodule foreach --quiet '\
   cd "$toplevel" \
-  && git diff ${GIT_SINCE}...${GIT_UNTIL} --submodule=log -- "$path" \
+  && git diff ${GIT_SINCE}...${GIT_UNTIL} --submodule=log --no-ext-diff -- "$path" \
      | sed -e "s/  > /- /" \
      | sed -e "s/Submodule \([a-zA-Z_-]*\).*/### \1\\
 \
