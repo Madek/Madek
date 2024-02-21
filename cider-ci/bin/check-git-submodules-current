@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -euxo pipefail
+set -euo pipefail
 
 # like `check-if-branch-current`, but for all the submodules, recursive.
 

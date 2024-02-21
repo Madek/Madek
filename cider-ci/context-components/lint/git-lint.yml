@@ -29,7 +29,7 @@
 #      test:
 #        start_when:
 #          git-prepared: { script_key: git-prepare }
- 
+
 
   tasks:
 
@@ -43,7 +43,7 @@
         test:
           body: |
             #!/usr/bin/env bash
-            set -eux
+            set -euo pipefail
             # no merges between GIT_LINEAR_HISTORY_CHECK_START_SHA and the current commit,
             # expect when merging in the stable release.
             git fetch origin refs/heads/stable 1>&2 && {
