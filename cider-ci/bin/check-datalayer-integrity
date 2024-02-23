@@ -4,8 +4,9 @@
 const PATHS = [
   "admin-webapp/datalayer",
   "api/datalayer",
-  "webapp/datalayer",
-  "auth/datalayer"
+  "auth/datalayer",
+  "mail/datalayer",
+  "webapp/datalayer"
 ];
 // -------------------------------- 8< --------------------------------------------
 

@@ -1,9 +1,5 @@
 "git Lint":
 
-  include:
-    - submodule: [webapp, datalayer]
-      path: cider-ci/context-components/merge-checks.yml
-
   task_defaults:
 
     environment_variables:

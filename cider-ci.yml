@@ -109,8 +109,10 @@ jobs:
       task_defaults:
         environment_variables:
           DATALAYER_DIR: '{{CIDER_CI_WORKING_DIR}}/api/datalayer'
+          GIT_LINEAR_HISTORY_CHECK_START_SHA: 8e454e2e5a333fc4cf84db5386f465252b751acd
       contexts:
         include:
+          - path: cider-ci/context-components/lint/git-lint.yml
           - path: cider-ci/context-components/lint/git-lint.yml
             submodule: [api, datalayer]
       tasks:
@@ -198,48 +200,37 @@ jobs:
       all-tests: { job_key: all-tests, type: job, states: [passed] }
       good to merge of the api:
         {
-          job_key: good-to-merge,
+          job_key: merged-to-master,
           type: job,
           submodule: [api],
           states: [passed],
         }
       good to merge of the admin-webapp:
         {
-          job_key: good-to-merge,
+          job_key: merged-to-master,
           type: job,
           submodule: [admin-webapp],
           states: [passed],
         }
       good to merge of the auth:
         {
-          job_key: good-to-merge,
+          job_key: merged-to-master,
           type: job,
           submodule: [auth],
           states: [passed],
       }
       good to merge of the webapp:
         {
-          job_key: good-to-merge,
+          job_key: merged-to-master,
           type: job,
           submodule: [webapp],
           states: [passed],
         }
       good to merge of the mail:
         {
-          job_key: good-to-merge,
+          job_key: merged-to-master,
           type: job,
           submodule: [mail],
           states: [passed],
         }
     run_when: *GOOD_TO_MERGE_DEPS
-    context:
-      task_defaults:
-        environment_variables:
-          GIT_LINEAR_HISTORY_CHECK_START_SHA: 8e454e2e5a333fc4cf84db5386f465252b751acd
-      contexts:
-        include:
-          - path: cider-ci/context-components/lint/git-lint.yml
-
-
-
-
