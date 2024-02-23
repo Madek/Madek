@@ -194,7 +194,7 @@ jobs:
       This job depends on all jobs that need to pass for "Delivery".
       It is depended upon by GitHub's branch protection (for `master`)!
     priority: 999 # "empty" job = high priority
-    depends_on:
+    depends_on: &GOOD_TO_MERGE_DEPS
       all-tests: { job_key: all-tests, type: job, states: [passed] }
       good to merge of the api:
         {
@@ -224,6 +224,14 @@ jobs:
           submodule: [webapp],
           states: [passed],
         }
+      good to merge of the mail:
+        {
+          job_key: good-to-merge,
+          type: job,
+          submodule: [mail],
+          states: [passed],
+        }
+    run_when: *GOOD_TO_MERGE_DEPS
     context:
       task_defaults:
         environment_variables:
@@ -231,6 +239,7 @@ jobs:
       contexts:
         include:
           - path: cider-ci/context-components/lint/git-lint.yml
+
 
 
 
