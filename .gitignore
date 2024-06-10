@@ -10,3 +10,4 @@ config/git_refs.yml
 deploy-info.yml
 exporter/
 zhdk_integration/
+madek-api-v2/
