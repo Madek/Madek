@@ -218,7 +218,7 @@ jobs:
           type: job,
           submodule: [auth],
           states: [passed],
-      }
+        }
       good to merge of the webapp:
         {
           job_key: merged-to-master,
@@ -231,6 +231,27 @@ jobs:
           job_key: merged-to-master,
           type: job,
           submodule: [mail],
+          states: [passed],
+        }
+      good to merge of the deploy:
+        {
+          job_key: merged-to-master,
+          type: job,
+          submodule: [deploy],
+          states: [passed],
+        }
+      good to merge of the documentation:
+        {
+          job_key: merged-to-master,
+          type: job,
+          submodule: [documentation],
+          states: [passed],
+        }
+      good to merge of the integration-tests:
+        {
+          job_key: merged-to-master,
+          type: job,
+          submodule: [integration-tests],
           states: [passed],
         }
     run_when: *GOOD_TO_MERGE_DEPS
