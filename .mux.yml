@@ -1,1 +1,13 @@
 name: MADEK/madek
+windows:
+  1:
+    name: git
+    command: |
+      git fetch --all --recurse-submodules
+      ./datalayer/bin/git-check-submodules-merged-to-origin-master --skip-fetch
+  6:
+    name: datalayer
+    command: |
+      pg_env_set 15
+      cd datalayer
+

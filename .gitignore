@@ -7,6 +7,7 @@
 /storage
 /tmp
 config/git_refs.yml
+datalayer.tar.gz
 deploy-info.yml
 exporter/
 zhdk_integration/

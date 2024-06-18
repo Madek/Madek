@@ -22,3 +22,9 @@
 [submodule "mail"]
 	path = mail
 	url = https://github.com/Madek/madek-mail.git
+[submodule "datalayer"]
+	path = datalayer
+	url = https://github.com/Madek/madek-datalayer.git
+[submodule "api-v2"]
+	path = api-v2
+	url = https://github.com/Madek/madek-api-v2.git
