@@ -14,38 +14,24 @@ jobs:
         type: branch
         include_match: ^.+$
     context:
-      include: 
+      include:
         - cider-ci/context-components/integration-tests.yml
-      tasks: 
-        dummy: 
+      tasks:
+        dummy:
           scripts:
             test:
               body: "echo '✔︎ just a no-op dummy' ; exit 0"
 
-
-
-  build:
-    depends_on: &BUILD_DEPS
-      webapp precompilation is done: { submodule: [webapp], job_key: precompilation, type: job, states: [passed] }
-      api uberjar has passed: { submodule: [api], job_key: build-uberjar, type: job, states: [passed] }
-    run_when:
-      <<: *DEFAULT_TRIGGERS
-      <<: *BUILD_DEPS
-    context:
-      include:
-        - path: cider-ci/contexts/build_archive.yml
-          submodule: [deploy]
-
   integration-tests-plain:
     name: Integration Tests Plain
     depends_on: &INT_DEPS
-      integration-tests-preflight-check: 
-        job_key: integration-tests-preflight-check 
-        type: job 
-        states: [passed] 
+      integration-tests-preflight-check:
+        job_key: integration-tests-preflight-check
+        type: job
+        states: [passed]
     run_when: *INT_DEPS
     context:
-      include: 
+      include:
         - cider-ci/context-components/integration-tests.yml
       tasks:
         include:
@@ -55,13 +41,13 @@ jobs:
   integration-tests-release-info:
     name: Integration Tests Release Info
     depends_on: &INT_DEPS
-      integration-tests-preflight-check: 
-        job_key: integration-tests-preflight-check 
-        type: job 
-        states: [passed] 
+      integration-tests-preflight-check:
+        job_key: integration-tests-preflight-check
+        type: job
+        states: [passed]
     run_when: *INT_DEPS
     context:
-      include: 
+      include:
         - cider-ci/context-components/integration-tests.yml
       task_defaults:
         include: [cider-ci/task-components/set-release-info.yml]
@@ -73,13 +59,13 @@ jobs:
   integration-tests-cors_disabled:
     name: Integration Tests cors_disabled
     depends_on: &INT_DEPS
-      integration-tests-preflight-check: 
-        job_key: integration-tests-preflight-check 
-        type: job 
-        states: [passed] 
+      integration-tests-preflight-check:
+        job_key: integration-tests-preflight-check
+        type: job
+        states: [passed]
     run_when: *INT_DEPS
     context:
-      include: 
+      include:
         - cider-ci/context-components/integration-tests.yml
       task_defaults:
         include: [cider-ci/task-components/disable-cors.yml]
