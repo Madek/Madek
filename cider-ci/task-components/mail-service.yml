@@ -1,0 +1,6 @@
+include:
+- submodule: [mail]
+  path: cider-ci/task-components/server.yml
+
+environment_variables:
+  MADEK_MAIL_DIR: '{{CIDER_CI_WORKING_DIR}}/mail'
