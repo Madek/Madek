@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+MADEK_DIR="$(cd -- "$(dirname "${BASH_SOURCE}")" ; cd .. > /dev/null 2>&1 && pwd -P)"
+$MADEK_DIR/bin/env/ruby-setup
+
+cd $MADEK_DIR
+
+ruby ./bin/deploy_info.rb
+ruby ./dev/releasenotes-md-to-yaml.rb
