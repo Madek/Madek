@@ -103,9 +103,8 @@ jobs:
             submodule: [api, datalayer]
       tasks:
         datalayer integrity:
-          traits: { "nodejs": yes }
           git_options: { submodules: { include_match: ^.*$ } }
-          scripts: { test: { body: cider-ci/bin/check-datalayer-integrity } }
+          scripts: { test: { body: bin/git-check-submodule-consistency } }
   docs:
     name: docs
     depends_on:
