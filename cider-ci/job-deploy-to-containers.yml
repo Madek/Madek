@@ -1,15 +1,10 @@
 test-containers-deploy:
   name: Test Deploy to Containers
 
-  depends_on: &JOB_DEPENDENCIES
-    build passed: { type: job, job_key: build, states: [passed] }
-
-  run_when: *JOB_DEPENDENCIES
-
-# run_when:
-#   any branch matches:
-#     type: branch
-#     include_match: ^.+$
+  run_when:
+    any branch matches:
+      type: branch
+      include_match: ^.+$
 
   context:
     task_defaults: {}
