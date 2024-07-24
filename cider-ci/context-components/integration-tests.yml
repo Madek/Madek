@@ -25,13 +25,17 @@ task_defaults:
       path: cider-ci/task-components/database.yml
     - cider-ci/task-components/admin-webapp-service.yml
     - cider-ci/task-components/api-service.yml
+    - cider-ci/task-components/database-restore-personas.yml
+    - cider-ci/task-components/integration-test.yml
     - cider-ci/task-components/reverse-proxy.yml
     - cider-ci/task-components/settings.yml
     - cider-ci/task-components/webapp-service.yml
-    - cider-ci/task-components/integration-test.yml
-    - cider-ci/task-components/database-restore-personas.yml
     - submodule: [auth]
       path: cider-ci/task-components/service.yml
+    - submodule: [mail]
+      path: cider-ci/task-components/server.yml
+    - submodule: [mail]
+      path: cider-ci/task-components/fake-smtp-server.yml
 
   git_options: { submodules: { include_match: ^.*$ } }
 
@@ -39,6 +43,12 @@ task_defaults:
     MADEK_AUTH_HTTP_PORT: 
       min: 3100
       max: 3200
+    MADEK_MAIL_SMTP_PORT:
+      min: 4000
+      max: 4999
+    MADEK_MAIL_POP3_PORT:
+      min: 5000
+      max: 5999
 
   environment_variables:
     AUTH_DIR: '{{CIDER_CI_WORKING_DIR}}/auth'
@@ -46,6 +56,7 @@ task_defaults:
     DATALAYER_DIR: '{{CIDER_CI_WORKING_DIR}}/webapp/datalayer'
     DISABLE_HTTPS_THIS_IS_A_BAD_IDEA: but_its_ok_for_integration_testing
     DISABLE_SECRETS_STRENGTH_CHECK: 'yes'
+    MADEK_MAIL_DIR: '{{CIDER_CI_WORKING_DIR}}/mail' 
     PGVERSION: '15'
     RAILS_ENV: production
 
