@@ -47,8 +47,8 @@ task_defaults:
       min: 4000
       max: 4999
     MADEK_MAIL_POP3_PORT:
-      min: 4000
-      max: 4999
+      min: 5000
+      max: 5999
 
   environment_variables:
     AUTH_DIR: '{{CIDER_CI_WORKING_DIR}}/auth'
