@@ -24,7 +24,7 @@ scripts:
       #!/usr/bin/env bash
       set -euo pipefail
       cd ${ADMIN_WEBAPP_DIR}
-      PORT=${ADMIN_WEBAPP_HTTP_PORT} bundle exec rails s
+      PORT=${ADMIN_WEBAPP_HTTP_PORT} SECRET_KEY_BASE_DUMMY=1 bundle exec rails s
     start_when:
       ruby is set up:
         script_key: admin-webapp-bundle-ruby
