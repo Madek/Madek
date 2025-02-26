@@ -4,9 +4,9 @@ require 'bundler/inline'
 
 gemfile do
   source 'https://rubygems.org'
-  gem 'activesupport', '= 7.0.4'
-  gem 'pry', '= 0.14.1'
-  gem 'git', '>= 2.1.1'
+  gem 'activesupport', '= 7.1.3.2'
+  gem 'pry', '= 0.15.1'
+  gem 'git', '= 2.3.3'
 end
 
 require 'yaml'
