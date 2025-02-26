@@ -1,25 +1,28 @@
 environment_variables:
   INTEGRATION_TESTS_DIR: '{{CIDER_CI_WORKING_DIR}}/integration-tests'
 
-scripts: 
+scripts:
 
   int-tests-ruby-setup:
     body: |
       #!/usr/bin/env bash
       set -euo pipefail
-      ${INTEGRATION_TESTS_DIR}/bin/env/ruby-setup
+      cd ${INTEGRATION_TESTS_DIR}
+      ./bin/env/ruby-setup
 
   int-tests-firefox-setup:
     body: |
       #!/usr/bin/env bash
       set -euo pipefail
-      ${INTEGRATION_TESTS_DIR}/bin/env/firefox-setup
+      cd ${INTEGRATION_TESTS_DIR}
+      ./bin/env/firefox-setup
 
   int-tests-geckodriver-setup:
     body: |
       #!/usr/bin/env bash
       set -euo pipefail
-      ${INTEGRATION_TESTS_DIR}/bin/env/geckodriver-setup
+      cd ${INTEGRATION_TESTS_DIR}
+      ./bin/env/geckodriver-setup
 
   show-env:
     body: |
