@@ -43,14 +43,12 @@ test-containers-deploy:
           - path: container-test/cider-ci/task.yml
             submodule: [deploy]
 
-# TODO: needs fix; some problem with postgres
-#     ubuntu-24-lts:
-#       name: Ubuntu 24.04 LTS
-#       environment_variables:
-#         CONTAINER_BASE_IMAGE: "images:ubuntu/24.04"
-#       include:
-#         - path: container-test/cider-ci/task.yml
-#           submodule: [deploy]
-
+      ubuntu-24-lts:
+        name: Ubuntu 24.04 LTS
+        environment_variables:
+          CONTAINER_BASE_IMAGE: "images:ubuntu/24.04"
+        include:
+          - path: container-test/cider-ci/task.yml
+            submodule: [deploy]
 
 
