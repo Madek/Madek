@@ -105,8 +105,8 @@ jobs:
       tasks:
         datalayer integrity:
           git_options: { submodules: { include_match: ^.*$ } }
-          scripts: 
-            test: 
+          scripts:
+            test:
               body: |
                 #!/usr/bin/env bash
                 set -exo pipefail
@@ -164,9 +164,8 @@ jobs:
       lint: { job_key: lint, type: job, states: [passed] }
       integration-tests:
         { job_key: integration-tests, type: job, states: [passed] }
-# container tests are currently difficult
-#     test containers deploy:
-#       { job_key: test-containers-deploy, type: job, states: [passed] }
+      test containers deploy:
+        { job_key: test-containers-deploy, type: job, states: [passed] }
       all-tests of the api:
         { job_key: all-tests, type: job, submodule: [api], states: [passed] }
       all-tests of the admin-webapp:
