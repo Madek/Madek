@@ -12,3 +12,4 @@ deploy-info.yml
 exporter/
 zhdk_integration/
 madek-api-v2/
+.vscode/
