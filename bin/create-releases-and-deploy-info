@@ -2,7 +2,7 @@
 set -euo pipefail
 
 MADEK_DIR="$(cd -- "$(dirname "${BASH_SOURCE}")" ; cd .. > /dev/null 2>&1 && pwd -P)"
-"$MADEK_DIR/bin/env/ruby-setup"
+source "$MADEK_DIR/bin/env/ruby-setup"
 
 cd "$MADEK_DIR"
 
@@ -15,5 +15,20 @@ if command -v asdf >/dev/null 2>&1 && [[ -f "$MADEK_DIR/.tool-versions" ]]; then
   fi
 fi
 
-ruby "$MADEK_DIR/bin/deploy_info.rb"
-ruby "$MADEK_DIR/dev/releasenotes-md-to-yaml.rb"
+# Debug Ruby resolution in CI logs.
+echo "DEBUG required_ruby_version=${required_ruby_version:-<empty>}"
+echo "DEBUG ASDF_RUBY_VERSION(before)=${ASDF_RUBY_VERSION:-<unset>}"
+echo "DEBUG ruby command path=$(command -v ruby || echo '<not found>')"
+if command -v asdf >/dev/null 2>&1; then
+  echo "DEBUG asdf current ruby:"
+  asdf current ruby || true
+  if [[ -n "${required_ruby_version:-}" ]]; then
+    echo "DEBUG asdf where ruby ${required_ruby_version}:"
+    asdf where ruby "$required_ruby_version" || true
+  fi
+fi
+echo "DEBUG ruby -v with ASDF_RUBY_VERSION=${required_ruby_version:-<empty>}:"
+ASDF_RUBY_VERSION="${required_ruby_version:-}" ruby -v || true
+
+ASDF_RUBY_VERSION="${required_ruby_version:-}" ruby "$MADEK_DIR/bin/deploy_info.rb"
+ASDF_RUBY_VERSION="${required_ruby_version:-}" ruby "$MADEK_DIR/dev/releasenotes-md-to-yaml.rb"
