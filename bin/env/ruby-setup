@@ -1,21 +1,37 @@
 #!/usr/bin/env bash
 set -euo pipefail
 PROJECT_DIR="$(cd -- "$(dirname "${BASH_SOURCE}")" ; cd ../.. > /dev/null 2>&1 && pwd -P)"
+TOOL_VERSIONS_FILE="$PROJECT_DIR/.tool-versions"
+REQUIRED_RUBY_VERSION=""
 
-source $PROJECT_DIR/bin/env/select-tool-versions-manager
+if [[ -f "$TOOL_VERSIONS_FILE" ]]; then
+  REQUIRED_RUBY_VERSION="$(awk '$1 == "ruby" { print $2; exit }' "$TOOL_VERSIONS_FILE")"
+fi
+
+source "$PROJECT_DIR/bin/env/select-tool-versions-manager"
 
 case "$TOOL_VERSIONS_MANAGER" in
   asdf|asdf-vm)
     echo "Setting up ruby via asdf"
     ASDF_PLUGIN=ruby
     ASDF_PLUGIN_URL=https://github.com/asdf-vm/asdf-ruby.git
-    source $PROJECT_DIR/bin/env/asdf-helper.bash
+    source "$PROJECT_DIR/bin/env/asdf-helper.bash"
     asdf-update-plugin
-    asdf install ruby
+    if [[ -n "$REQUIRED_RUBY_VERSION" ]]; then
+      export ASDF_RUBY_VERSION="$REQUIRED_RUBY_VERSION"
+      asdf install ruby "$REQUIRED_RUBY_VERSION"
+    else
+      asdf install ruby
+    fi
     ;;
   mise)
     echo "Setting up ruby via mise"
-    mise install ruby
+    if [[ -n "$REQUIRED_RUBY_VERSION" ]]; then
+      export MISE_RUBY_VERSION="$REQUIRED_RUBY_VERSION"
+      mise install ruby@"$REQUIRED_RUBY_VERSION"
+    else
+      mise install ruby
+    fi
     ;;
   *)
     echo "ERROR: Unsupported TOOL_VERSIONS_MANAGER: $TOOL_VERSIONS_MANAGER"

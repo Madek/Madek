@@ -2,9 +2,18 @@
 set -euo pipefail
 
 MADEK_DIR="$(cd -- "$(dirname "${BASH_SOURCE}")" ; cd .. > /dev/null 2>&1 && pwd -P)"
-$MADEK_DIR/bin/env/ruby-setup
+"$MADEK_DIR/bin/env/ruby-setup"
 
-cd $MADEK_DIR
+cd "$MADEK_DIR"
 
-ruby ./bin/deploy_info.rb
-ruby ./dev/releasenotes-md-to-yaml.rb
+if command -v asdf >/dev/null 2>&1 && [[ -f "$MADEK_DIR/.tool-versions" ]]; then
+  required_ruby_version="$(awk '$1 == "ruby" { print $2; exit }' "$MADEK_DIR/.tool-versions")"
+  if [[ -n "${required_ruby_version:-}" ]]; then
+    # Ensure the same Ruby as declared in .tool-versions is active in this shell.
+    export ASDF_RUBY_VERSION="$required_ruby_version"
+    asdf install ruby "$required_ruby_version"
+  fi
+fi
+
+ruby "$MADEK_DIR/bin/deploy_info.rb"
+ruby "$MADEK_DIR/dev/releasenotes-md-to-yaml.rb"
