@@ -20,8 +20,18 @@ case "$TOOL_VERSIONS_MANAGER" in
     if [[ -n "$REQUIRED_RUBY_VERSION" ]]; then
       export ASDF_RUBY_VERSION="$REQUIRED_RUBY_VERSION"
       asdf install ruby "$REQUIRED_RUBY_VERSION"
+      ruby_install_dir="$(asdf where ruby "$REQUIRED_RUBY_VERSION" 2>/dev/null || true)"
+      ruby_bin="${ruby_install_dir}/bin/ruby"
+      if [[ -z "${ruby_install_dir}" || ! -x "${ruby_bin}" ]]; then
+        echo "WARNING: ruby $REQUIRED_RUBY_VERSION marked installed but binary missing; reinstalling"
+        asdf uninstall ruby "$REQUIRED_RUBY_VERSION" || true
+        asdf install ruby "$REQUIRED_RUBY_VERSION"
+      fi
+      # Ensure ruby shim reflects the newly active version in CI shells.
+      asdf reshim ruby "$REQUIRED_RUBY_VERSION"
     else
       asdf install ruby
+      asdf reshim ruby
     fi
     ;;
   mise)

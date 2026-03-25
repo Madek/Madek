@@ -9,26 +9,16 @@ cd "$MADEK_DIR"
 if command -v asdf >/dev/null 2>&1 && [[ -f "$MADEK_DIR/.tool-versions" ]]; then
   required_ruby_version="$(awk '$1 == "ruby" { print $2; exit }' "$MADEK_DIR/.tool-versions")"
   if [[ -n "${required_ruby_version:-}" ]]; then
-    # Ensure the same Ruby as declared in .tool-versions is active in this shell.
     export ASDF_RUBY_VERSION="$required_ruby_version"
     asdf install ruby "$required_ruby_version"
+    asdf reshim ruby "$required_ruby_version"
   fi
 fi
 
-# Debug Ruby resolution in CI logs.
-echo "DEBUG required_ruby_version=${required_ruby_version:-<empty>}"
-echo "DEBUG ASDF_RUBY_VERSION(before)=${ASDF_RUBY_VERSION:-<unset>}"
-echo "DEBUG ruby command path=$(command -v ruby || echo '<not found>')"
 if command -v asdf >/dev/null 2>&1; then
-  echo "DEBUG asdf current ruby:"
-  asdf current ruby || true
-  if [[ -n "${required_ruby_version:-}" ]]; then
-    echo "DEBUG asdf where ruby ${required_ruby_version}:"
-    asdf where ruby "$required_ruby_version" || true
-  fi
+  ASDF_RUBY_VERSION="${required_ruby_version:-}" asdf exec ruby "$MADEK_DIR/bin/deploy_info.rb"
+  ASDF_RUBY_VERSION="${required_ruby_version:-}" asdf exec ruby "$MADEK_DIR/dev/releasenotes-md-to-yaml.rb"
+else
+  ASDF_RUBY_VERSION="${required_ruby_version:-}" ruby "$MADEK_DIR/bin/deploy_info.rb"
+  ASDF_RUBY_VERSION="${required_ruby_version:-}" ruby "$MADEK_DIR/dev/releasenotes-md-to-yaml.rb"
 fi
-echo "DEBUG ruby -v with ASDF_RUBY_VERSION=${required_ruby_version:-<empty>}:"
-ASDF_RUBY_VERSION="${required_ruby_version:-}" ruby -v || true
-
-ASDF_RUBY_VERSION="${required_ruby_version:-}" ruby "$MADEK_DIR/bin/deploy_info.rb"
-ASDF_RUBY_VERSION="${required_ruby_version:-}" ruby "$MADEK_DIR/dev/releasenotes-md-to-yaml.rb"
