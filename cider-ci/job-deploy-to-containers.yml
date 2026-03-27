@@ -35,6 +35,15 @@ test-containers-deploy:
           - path: container-test/cider-ci/task.yml
             submodule: [deploy]
 
+      upgrade-bookworm-to-trixie:
+        name: Upgrade Debian 12 (bookworm) → 13 (trixie)
+        environment_variables:
+          CONTAINER_BASE_IMAGE: "images:debian/bookworm"
+          EXTRA_ANSIBLE_VARS_JSON: '{"ansible_python_interpreter":"/usr/bin/python3"}'
+        include:
+          - path: container-test/cider-ci/context-upgrade-bookworm-to-trixie.yml
+            submodule: [deploy]
+
       ubuntu-22-lts:
         name: Ubuntu 22.04 LTS
         environment_variables:
