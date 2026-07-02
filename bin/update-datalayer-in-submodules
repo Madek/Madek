@@ -136,9 +136,9 @@ if $DRY_RUN; then
 else
   read -rp "Push updated submodule branches? [Y/n]: " PUSH_ANSWER
   if [[ "${PUSH_ANSWER,,}" != "n" ]]; then
-    my-scripts/push-datalayer-submodule-branches --branch "$BRANCH"
+    bin/push-datalayer-submodule-branches --branch "$BRANCH"
   else
     echo "Skipped. To push manually:"
-    echo "  my-scripts/push-datalayer-submodule-branches --branch $BRANCH"
+    echo "  bin/push-datalayer-submodule-branches --branch $BRANCH"
   fi
 fi
