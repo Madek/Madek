@@ -1,9 +1,9 @@
 #!/bin/sh -exu
 
 export DEV_INITIALS=uvb
-export RELEASE_MAJOR_MINOR=4.14
+export RELEASE_MAJOR_MINOR=4.15
 export RELEASE_PATCH=0
-export RELEASE_PRE='' # '-RC.1'; or '' for stable release
+export RELEASE_PRE='-RC.1' # '-RC.1'; or '' for stable release
 export VERSION_PREFIX='v'
 
 export RELEASE_MAIN="$RELEASE_MAJOR_MINOR.$RELEASE_PATCH"
