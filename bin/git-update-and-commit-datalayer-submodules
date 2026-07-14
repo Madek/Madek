@@ -79,8 +79,6 @@ Dir.chdir @MADEK_ROOT_DIR do
     exec_shell_command "git add #{submodule}"
   end
 
-  exec_shell_command "git commit -m #{Shellwords.escape(@opts['commit-message'])}"
-
   # set branches and push
   escaped_branch_name = Shellwords.escape(@opts['branch-name'])
   SUBS.push([".", nil]).each do |submodule, db_path|

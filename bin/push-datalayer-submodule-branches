@@ -34,13 +34,13 @@ for entry in "${SUBMODULES[@]}"; do
 
   echo "=== $SM/$DL_PATH ==="
   cd "${PROJECT_DIR}/${SM}/${DL_PATH}"
-  git push --force origin "HEAD:${BRANCH}"
+  git push --force origin "HEAD:refs/heads/${BRANCH}"
 
   echo "=== $SM ==="
   cd "${PROJECT_DIR}/${SM}"
-  git push --force origin "HEAD:${BRANCH}"
+  git push --force origin "HEAD:refs/heads/${BRANCH}"
 done
 
 echo "=== main repo ==="
 cd "${PROJECT_DIR}"
-git push --force origin "HEAD:${BRANCH}"
+git push --force origin "HEAD:refs/heads/${BRANCH}"
