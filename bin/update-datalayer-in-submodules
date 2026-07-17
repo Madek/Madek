@@ -122,13 +122,12 @@ for entry in "${SUBMODULES[@]}"; do
   cd "${PROJECT_DIR}"
 done
 
-# Commit everything in main repo
+# Stage everything in main repo (commit left to the caller)
 echo "=== main repo ==="
 run git add datalayer
 for entry in "${SUBMODULES[@]}"; do
   run git add "${entry%%:*}"
 done
-run git commit -m "$MESSAGE"
 
 echo ""
 if $DRY_RUN; then
@@ -136,9 +135,9 @@ if $DRY_RUN; then
 else
   read -rp "Push updated submodule branches? [Y/n]: " PUSH_ANSWER
   if [[ "${PUSH_ANSWER,,}" != "n" ]]; then
-    my-scripts/push-datalayer-submodule-branches --branch "$BRANCH"
+    bin/push-datalayer-submodule-branches --branch "$BRANCH"
   else
     echo "Skipped. To push manually:"
-    echo "  my-scripts/push-datalayer-submodule-branches --branch $BRANCH"
+    echo "  bin/push-datalayer-submodule-branches --branch $BRANCH"
   fi
 fi
