@@ -11,14 +11,6 @@ test-containers-deploy:
     task_defaults: {}
 
     tasks:
-      debian-bullseye:
-        name: Debian 11 (bullseye)
-        environment_variables:
-          CONTAINER_BASE_IMAGE: "images:debian/bullseye"
-        include:
-          - path: container-test/cider-ci/task.yml
-            submodule: [deploy]
-
       debian-bookworm:
         name: Debian 12 (bookworm)
         environment_variables:
