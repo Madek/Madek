@@ -2,7 +2,7 @@
 
 export DEV_INITIALS=mr
 export RELEASE_MAJOR_MINOR=4.16
-export RELEASE_PATCH=0
+export RELEASE_PATCH=1
 export RELEASE_PRE='' # '-RC.1'; or '' for stable release
 export VERSION_PREFIX='v'
 
