@@ -70,7 +70,6 @@ e12d1f53-93cf-4733-9b64-626fa8d7e7e8;Ton Mono;media_content:audio_formats
 8e85af41-ad2b-482d-bf95-22c1c2762328;HD;media_content:image_size
 8339f1f1-b438-471e-9ade-55da10c73cc8;HDTV 1080p;media_content:image_size
 a4174f0a-57fb-48a0-84e5-be6dff92061c;HDV 1080i50;media_content:image_size
-83f300f5-633d-4dcd-a6e2-47daf95d6e22;Pal;media_content:image_size
 8a828337-d079-4e37-bfcd-acdbea983954;Video 4K UHD;media_content:image_size
 49054994-869a-4a54-b378-31ea001c0c38;Video HD 1080i;media_content:image_size
 3e959fd8-71bb-444b-949b-5f2575df1996;Video HD 1080p;media_content:image_size
@@ -216,6 +215,7 @@ facd3a4b-b25d-4eba-ad79-ac2b6f33eabd;Handykamera;media_content:recording_medium
 b7fbf756-78fe-4197-bc99-00dc5e347e74;HD cam;media_content:recording_medium
 1d4719cc-63ce-4a27-86d3-49631da44608;Mini DV;media_content:recording_medium
 cbeb32c3-2e87-461c-a564-3682c9bbc4bb;"Original: Kleinbilddia Farbe; Digitalisat: TIFF";media_content:recording_medium
+83f300f5-633d-4dcd-a6e2-47daf95d6e22;Pal;media_content:recording_medium
 c44ecc98-d9f6-46cf-8df1-5f7a84edd677;Super-8 Film;media_content:recording_medium
 ff0b0811-9c4a-4deb-87af-b3d8888db200;XDCam EX;media_content:recording_medium
 7d979f43-214c-4297-b1cc-a7d47839415e;2k DCP;media_content:video_formats
